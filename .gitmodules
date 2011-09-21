@@ -1,3 +1,6 @@
 [submodule "submodule/Three20"]
 	path = submodule/Three20
 	url = https://github.com/facebook/three20.git
+[submodule "submodule/DDAlertPrompt"]
+	path = submodule/DDAlertPrompt
+	url = https://github.com/digdog/DDAlertPrompt.git
