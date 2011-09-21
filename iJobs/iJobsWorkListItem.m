@@ -11,56 +11,39 @@
 
 @implementation iJobsWorkListItem
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+@synthesize missionTitle = _missionTitle;
+@synthesize missionDetail = _missionDetail;
+@synthesize missionLocationAddress = _missionLocationAddress;
+@synthesize missionDate = _missionDate;
+@synthesize workerName = _workerName;
+@synthesize workerID = _workerID;
+@synthesize customerName = _customerName;
+@synthesize customerID = _customerID;
+
+- (id)initWithTitle:(NSString *)title Detail:(NSString *)detail Location:(NSString *)location date:(NSString *)date workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID {
+  if ((self = [super init])) {
+    self.missionTitle = title;
+    self.missionDetail = detail;
+    self.missionLocationAddress = location;
+    self.missionDate = date;
+    self.workerName = workerName;
+    self.workerID = workerID;
+    self.customerName = customerName;
+    self.customerID = customerID;
+  }
+  return self;
 }
 
 - (void)dealloc
 {
+  TT_RELEASE_SAFELY(_missionTitle);
+  TT_RELEASE_SAFELY(_missionDetail);
+  TT_RELEASE_SAFELY(_missionDate);
+  TT_RELEASE_SAFELY(_missionLocationAddress);
+  TT_RELEASE_SAFELY(_workerID);
+  TT_RELEASE_SAFELY(_workerName);
+  TT_RELEASE_SAFELY(_customerID);
+  TT_RELEASE_SAFELY(_customerName);
     [super dealloc];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-*/
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 @end

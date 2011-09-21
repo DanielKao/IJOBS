@@ -22,6 +22,8 @@
   TTURLMap *map = navigator.URLMap;
   [map from:@"*" toViewController:[TTWebController class]];
   [map from:kRootPath toViewController:[iJobsSummaryTableViewController class]];
+  
+  /*This is for mockup data, after the API is completed, selector should change*/
   [map from:kWorkListPath toViewController:[iJobsWorkListTableViewController class]];
 
   if (![navigator restoreViewControllers]) {

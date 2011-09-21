@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class iJobsWorkListModel;
 
 @interface iJobsWorkListDataSource : TTListDataSource {
-    
+  iJobsWorkListModel *_workListModel;
 }
+
+@property(nonatomic, retain) iJobsWorkListModel *workListModel;
+
+- (id)initWithMockupData;
+- (id)initWithWorkListAPI;
 
 @end

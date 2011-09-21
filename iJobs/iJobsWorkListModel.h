@@ -10,7 +10,9 @@
 
 
 @interface iJobsWorkListModel : TTURLRequestModel {
-    
+  NSMutableArray *_workListItems;
 }
+
+@property(nonatomic, retain) NSMutableArray *workListItems;
 
 @end

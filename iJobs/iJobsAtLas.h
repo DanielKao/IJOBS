@@ -10,3 +10,7 @@
 #define kWorkListPath @"tt://workList/"
 #define kMapPath @"tt://map/"
 #define kCameraPath @"tt://camera/"
+
+
+// iJobs APP API
+#define kWorkListAPI @"undefined"

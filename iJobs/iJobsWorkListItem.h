@@ -10,7 +10,25 @@
 
 
 @interface iJobsWorkListItem : NSObject {
-    
+    /* 用來接收工作清單的每筆資料, iVar待確認*/
+  NSString *_missionTitle;
+  NSString *_missionDetail;
+  NSString *_missionLocationAddress;
+  NSString *_missionDate;
+  NSString *_workerName;
+  NSString *_workerID;
+  NSString *_customerName;
+  NSString *_customerID;
 }
+
+@property(nonatomic, retain) NSString *missionTitle;
+@property(nonatomic, retain) NSString *missionDetail;
+@property(nonatomic, retain) NSString *missionLocationAddress;
+@property(nonatomic, retain) NSString *missionDate;
+@property(nonatomic, retain) NSString *workerName;
+@property(nonatomic, retain) NSString *workerID;
+@property(nonatomic, retain) NSString *customerName;
+@property(nonatomic, retain) NSString *customerID;
+          
 
 @end

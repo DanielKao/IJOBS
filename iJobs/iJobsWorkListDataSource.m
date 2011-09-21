@@ -7,60 +7,48 @@
 //
 
 #import "iJobsWorkListDataSource.h"
-
+#import "iJobsWorkListModel.h"
 
 @implementation iJobsWorkListDataSource
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+@synthesize workListModel = _workListModel;
+
+- (id)initWithMockupData {
+  self = [super init];
+  if (self) {
+    TTTableMessageItem *testItem = [TTTableMessageItem itemWithTitle:@"任務：(待填)" caption:@"客戶名稱：(待填)" text:@"工作內容：(待填) *設定accessoryURL以檢視完整工作內容" timestamp:[NSDate date] imageURL:nil URL:@"tw.yahoo.com"];
+    self.items = [NSArray arrayWithObjects:testItem,testItem,testItem,testItem,testItem,nil];
+  }
+  return self;
+}
+
+- (id)initWithWorkListAPI {
+  self = [super init];
+  if (self) {
+    _workListModel = [[iJobsWorkListModel alloc] init];
+  }
+  return self;
 }
 
 - (void)dealloc
 {
-    [super dealloc];
+  TT_RELEASE_SAFELY(_workListModel);
+  [super dealloc];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
 
 /*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
+ *  Ask for model
+ */
 /*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (id<TTModel>)model {
+  // TTDPRINT(@"Start");
+  return _workListModel;
 }
-*/
+ */
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (void)tableViewDidLoadModel:(UITableView*)tableView {
+
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 @end
