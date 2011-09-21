@@ -37,17 +37,17 @@
 		E910FD4F1429D3FA0034AEBB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E910FD511429D3FA0034AEBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E910FD531429D3FB0034AEBB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		E910FD571429D3FB0034AEBB /* iJobs-Info.plist */ = {isa = PBXFileReference; path = "iJobs-Info.plist"; sourceTree = "<group>"; };
+		E910FD571429D3FB0034AEBB /* iJobs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iJobs-Info.plist"; sourceTree = "<group>"; };
 		E910FD591429D3FB0034AEBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E910FD5B1429D3FB0034AEBB /* iJobs-Prefix.pch */ = {isa = PBXFileReference; path = "iJobs-Prefix.pch"; sourceTree = "<group>"; };
+		E910FD5B1429D3FB0034AEBB /* iJobs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iJobs-Prefix.pch"; sourceTree = "<group>"; };
 		E910FD5C1429D3FB0034AEBB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E910FD5E1429D3FB0034AEBB /* iJobsAppDelegate.h */ = {isa = PBXFileReference; path = iJobsAppDelegate.h; sourceTree = "<group>"; };
+		E910FD5E1429D3FB0034AEBB /* iJobsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iJobsAppDelegate.h; sourceTree = "<group>"; };
 		E910FD5F1429D3FB0034AEBB /* iJobsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iJobsAppDelegate.m; sourceTree = "<group>"; };
 		E910FD621429D3FB0034AEBB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		E910FD691429D3FB0034AEBB /* iJobsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iJobsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E910FD711429D3FB0034AEBB /* iJobsTests-Info.plist */ = {isa = PBXFileReference; path = "iJobsTests-Info.plist"; sourceTree = "<group>"; };
+		E910FD711429D3FB0034AEBB /* iJobsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iJobsTests-Info.plist"; sourceTree = "<group>"; };
 		E910FD731429D3FB0034AEBB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E910FD751429D3FB0034AEBB /* iJobsTests-Prefix.pch */ = {isa = PBXFileReference; path = "iJobsTests-Prefix.pch"; sourceTree = "<group>"; };
+		E910FD751429D3FB0034AEBB /* iJobsTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iJobsTests-Prefix.pch"; sourceTree = "<group>"; };
 		E910FD761429D3FB0034AEBB /* iJobsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iJobsTests.h; sourceTree = "<group>"; };
 		E910FD781429D3FB0034AEBB /* iJobsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iJobsTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
