@@ -11,4 +11,7 @@
 #ifdef __OBJC__
   #import <UIKit/UIKit.h>
   #import <Foundation/Foundation.h>
+  #import <Three20/three20+Additions.h>
+  #import <extThree20JSON/extThree20JSON.h>
+  #import "iJobsAtLas.h"
 #endif

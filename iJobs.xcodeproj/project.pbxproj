@@ -245,6 +245,7 @@
 		E910FD751429D3FB0034AEBB /* iJobsTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iJobsTests-Prefix.pch"; sourceTree = "<group>"; };
 		E910FD761429D3FB0034AEBB /* iJobsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iJobsTests.h; sourceTree = "<group>"; };
 		E910FD781429D3FB0034AEBB /* iJobsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iJobsTests.m; sourceTree = "<group>"; };
+		E9D3C76F1429D95000D36C54 /* iJobsAtLas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iJobsAtLas.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,6 +399,7 @@
 				E910FD5F1429D3FB0034AEBB /* iJobsAppDelegate.m */,
 				E910FD611429D3FB0034AEBB /* MainWindow.xib */,
 				E910FD561429D3FB0034AEBB /* Supporting Files */,
+				E9D3C76F1429D95000D36C54 /* iJobsAtLas.h */,
 			);
 			path = iJobs;
 			sourceTree = "<group>";
