@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'iJobsTests' target in the 'iJobsTests' project
+//
+
+#ifdef __OBJC__
+  #import <UIKit/UIKit.h>
+#endif
