@@ -6,10 +6,8 @@
 //  Copyright 2011年 NCCUCS. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface iJobsAppDelegate : NSObject <UIApplicationDelegate> {
-
+  UIWindow *_window;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

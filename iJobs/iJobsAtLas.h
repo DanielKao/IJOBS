@@ -6,3 +6,7 @@
 //  Copyright 2011年 NCCUCS. All rights reserved.
 //
 
+#define kRootPath @"tt://root/"
+#define kWorkListPath @"tt://workList/"
+#define kMapPath @"tt://map/"
+#define kCameraPath @"tt://camera/"

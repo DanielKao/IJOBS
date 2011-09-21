@@ -7,17 +7,32 @@
 //
 
 #import "iJobsAppDelegate.h"
+#import "iJobsSummaryTableViewController.h"
+#import "iJobsWorkListTableViewController.h"
 
 @implementation iJobsAppDelegate
 
-
-@synthesize window=_window;
+@synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  // Override point for customization after application launch.
-  [self.window makeKeyAndVisible];
-    return YES;
+  TTNavigator *navigator = [TTNavigator navigator];
+  navigator.persistenceMode = TTNavigatorPersistenceModeAll;
+  navigator.window = _window;
+  TTURLMap *map = navigator.URLMap;
+  [map from:@"*" toViewController:[TTWebController class]];
+  [map from:kRootPath toViewController:[iJobsSummaryTableViewController class]];
+  [map from:kWorkListPath toViewController:[iJobsWorkListTableViewController class]];
+
+  if (![navigator restoreViewControllers]) {
+    [navigator openURLAction:[TTURLAction actionWithURLPath:kRootPath]];
+  }
+  return YES;
+}
+
+- (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)URL {
+  [[TTNavigator navigator] openURLAction:[TTURLAction actionWithURLPath:URL.absoluteString]];
+  return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -61,7 +76,7 @@
 
 - (void)dealloc
 {
-  [_window release];
+  TT_RELEASE_SAFELY(_window);
     [super dealloc];
 }
 
