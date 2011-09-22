@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-
+@class iJobsWorkListTableViewDelegate;
 @interface iJobsWorkListTableViewController : TTTableViewController {
-    
+  iJobsWorkListTableViewDelegate *_tableViewDelegate;
 }
+
+@property(nonatomic, retain) iJobsWorkListTableViewDelegate *tableViewDelegate;
 
 @end

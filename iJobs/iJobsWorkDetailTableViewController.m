@@ -10,7 +10,7 @@
 #import "iJobsWorkListItem.h"
 
 @interface iJobsWorkDetailTableViewController()
-- (NSArray *)arrayWithWorkDetailTableItem:(iJobsWorkListItem *)workItem;
+- (NSMutableArray *)arrayWithWorkDetailTableItem:(iJobsWorkListItem *)workItem;
 @end
 
 @implementation iJobsWorkDetailTableViewController
@@ -23,16 +23,20 @@
     if (self) {
       self.tableViewStyle = UITableViewStyleGrouped;
       self.variableHeightRows = YES;
+      self.title = @"工作說明";
     }
     return self;
 }
 
-- (id)initWithWorkItem:(iJobsWorkListItem *)workItem {
-  if ((self = [self initWithNibName:nil bundle:nil])) {
-    self.workItem = workItem;
+- (id) initWithNavigatorURL:(NSURL*)URL query:(NSDictionary*)query {
+  self = [super init];
+  if (self != nil) {
+    self.workItem = [query objectForKey:kParameterWorkItem];
+    TTDPRINT(@"workItem :%@", self.workItem);
   }
   return self;
 }
+
 
 - (void)dealloc
 {
@@ -55,7 +59,7 @@
 - (void)loadView
 { 
   [super loadView];
-  NSArray *detailItems = [self arrayWithWorkDetailTableItem:self.workItem];
+  NSMutableArray *detailItems = [self arrayWithWorkDetailTableItem:self.workItem];
   self.dataSource = [TTListDataSource dataSourceWithItems:detailItems];
 
 }
@@ -77,7 +81,7 @@
 }
 
 #pragma mark - private method
-- (NSArray *)arrayWithWorkDetailTableItem:(iJobsWorkListItem *)workItem {
+- (NSMutableArray *)arrayWithWorkDetailTableItem:(iJobsWorkListItem *)workItem {
   /*NSString *_missionTitle;
    NSString *_missionDetail;
    NSString *_missionLocationAddress;
@@ -87,13 +91,13 @@
    NSString *_customerName;
    NSString *_customerID;*/
   NSString *customerNameField = [NSString stringWithFormat:@"客戶名稱： %@", workItem.customerName];
-  NSString *workerNameField = [NSString stringWithFormat:@"工程師： %@", workItem.workerName];
+  //NSString *workerNameField = [NSString stringWithFormat:@"工程師： %@", workItem.workerName];
   NSString *missionTitleField = [NSString stringWithFormat:@"任務名稱： %@", workItem.missionTitle];
   NSString *missionDetailField = [NSString stringWithFormat:@"任務說明： %@", workItem.missionDetail];
   NSString *missionLocationAddressField = [NSString stringWithFormat:@"任務地點： %@", workItem.missionLocationAddress];
   NSString *missionDateField = [NSString stringWithFormat:@"約定時間： %@", workItem.missionDate];
   
-  return [NSArray arrayWithObjects:
+  return [NSMutableArray arrayWithObjects:
                                  [TTTableTextItem itemWithText: customerNameField],
                                  [TTTableTextItem itemWithText: missionTitleField],
                                  [TTTableTextItem itemWithText: missionLocationAddressField],

@@ -30,5 +30,5 @@
 @property(nonatomic, retain) NSString *customerName;
 @property(nonatomic, retain) NSString *customerID;
           
-
+- (id)initWithTitle:(NSString *)title Detail:(NSString *)detail Location:(NSString *)location date:(NSString *)date workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID;
 @end

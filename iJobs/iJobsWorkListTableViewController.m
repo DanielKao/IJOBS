@@ -8,8 +8,10 @@
 
 #import "iJobsWorkListTableViewController.h"
 #import "iJobsWorkListDataSource.h"
-
+#import "iJobsWorkListTableViewDelegate.h"
 @implementation iJobsWorkListTableViewController
+
+@synthesize tableViewDelegate = _tableViewDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -17,6 +19,7 @@
     if (self) {
       self.title = @"工作清單";
       self.variableHeightRows = YES;
+      //_tableViewDelegate = [[iJobsWorkListTableViewDelegate alloc] initWithController:self];
     }
     return self;
 }

@@ -9,7 +9,7 @@
 #import "iJobsAppDelegate.h"
 #import "iJobsSummaryTableViewController.h"
 #import "iJobsWorkListTableViewController.h"
-
+#import "iJobsWorkDetailTableViewController.h"
 @implementation iJobsAppDelegate
 
 @synthesize window = _window;
@@ -25,7 +25,7 @@
   
   /*This is for mockup data, after the API is completed, selector should change*/
   [map from:kWorkListPath toViewController:[iJobsWorkListTableViewController class]];
-
+  [map from:kWorkDetailPath toViewController:[iJobsWorkDetailTableViewController class]];
   if (![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:kRootPath]];
   }
