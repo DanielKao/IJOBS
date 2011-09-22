@@ -35,6 +35,8 @@
 		E9B6D9061429E68900E36419 /* iJobsWorkListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B6D9051429E68900E36419 /* iJobsWorkListModel.m */; };
 		E9B6D9091429E6A400E36419 /* iJobsWorkListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B6D9081429E6A400E36419 /* iJobsWorkListDataSource.m */; };
 		E9B6D90C1429E6BB00E36419 /* iJobsWorkListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B6D90B1429E6BB00E36419 /* iJobsWorkListItem.m */; };
+		E9B6D90F142B00BC00E36419 /* iJobsWorkDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B6D90E142B00BC00E36419 /* iJobsWorkDetailTableViewController.m */; };
+		E9B6D912142B0A3700E36419 /* iJobsWorkListTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B6D911142B0A3700E36419 /* iJobsWorkListTableViewDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,6 +262,10 @@
 		E9B6D9081429E6A400E36419 /* iJobsWorkListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iJobsWorkListDataSource.m; sourceTree = "<group>"; };
 		E9B6D90A1429E6BB00E36419 /* iJobsWorkListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iJobsWorkListItem.h; sourceTree = "<group>"; };
 		E9B6D90B1429E6BB00E36419 /* iJobsWorkListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iJobsWorkListItem.m; sourceTree = "<group>"; };
+		E9B6D90D142B00BC00E36419 /* iJobsWorkDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iJobsWorkDetailTableViewController.h; sourceTree = "<group>"; };
+		E9B6D90E142B00BC00E36419 /* iJobsWorkDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iJobsWorkDetailTableViewController.m; sourceTree = "<group>"; };
+		E9B6D910142B0A3600E36419 /* iJobsWorkListTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iJobsWorkListTableViewDelegate.h; sourceTree = "<group>"; };
+		E9B6D911142B0A3700E36419 /* iJobsWorkListTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iJobsWorkListTableViewDelegate.m; sourceTree = "<group>"; };
 		E9D3C76F1429D95000D36C54 /* iJobsAtLas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iJobsAtLas.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -412,12 +418,12 @@
 			children = (
 				E910FD5E1429D3FB0034AEBB /* iJobsAppDelegate.h */,
 				E910FD5F1429D3FB0034AEBB /* iJobsAppDelegate.m */,
+				E9D3C76F1429D95000D36C54 /* iJobsAtLas.h */,
 				E9B6D87C1429E0ED00E36419 /* Controller */,
 				E9B6D87D1429E11300E36419 /* DataSource */,
 				E9B6D87E1429E11500E36419 /* Model */,
 				E9B6D87F1429E11700E36419 /* Object */,
 				E910FD561429D3FB0034AEBB /* Supporting Files */,
-				E9D3C76F1429D95000D36C54 /* iJobsAtLas.h */,
 			);
 			path = iJobs;
 			sourceTree = "<group>";
@@ -458,10 +464,13 @@
 		E9B6D87C1429E0ED00E36419 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E9B6D913142B0A3C00E36419 /* iJobsTableViewDelegate */,
 				E9B6D8801429E17D00E36419 /* iJobsSummaryTableViewController.h */,
 				E9B6D8811429E17D00E36419 /* iJobsSummaryTableViewController.m */,
 				E9B6D9011429E60D00E36419 /* iJobsWorkListTableViewController.h */,
 				E9B6D9021429E60D00E36419 /* iJobsWorkListTableViewController.m */,
+				E9B6D90D142B00BC00E36419 /* iJobsWorkDetailTableViewController.h */,
+				E9B6D90E142B00BC00E36419 /* iJobsWorkDetailTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -491,6 +500,15 @@
 				E9B6D90B1429E6BB00E36419 /* iJobsWorkListItem.m */,
 			);
 			name = Object;
+			sourceTree = "<group>";
+		};
+		E9B6D913142B0A3C00E36419 /* iJobsTableViewDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				E9B6D910142B0A3600E36419 /* iJobsWorkListTableViewDelegate.h */,
+				E9B6D911142B0A3700E36419 /* iJobsWorkListTableViewDelegate.m */,
+			);
+			name = iJobsTableViewDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -772,6 +790,8 @@
 				E9B6D9061429E68900E36419 /* iJobsWorkListModel.m in Sources */,
 				E9B6D9091429E6A400E36419 /* iJobsWorkListDataSource.m in Sources */,
 				E9B6D90C1429E6BB00E36419 /* iJobsWorkListItem.m in Sources */,
+				E9B6D90F142B00BC00E36419 /* iJobsWorkDetailTableViewController.m in Sources */,
+				E9B6D912142B0A3700E36419 /* iJobsWorkListTableViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,8 +16,6 @@
 - (id)initWithMockupData {
   self = [super init];
   if (self) {
-    TTTableMessageItem *testItem = [TTTableMessageItem itemWithTitle:@"任務：(待填)" caption:@"客戶名稱：(待填)" text:@"工作內容：(待填) *設定accessoryURL以檢視完整工作內容" timestamp:[NSDate date] imageURL:nil URL:@"tw.yahoo.com"];
-    self.items = [NSArray arrayWithObjects:testItem,testItem,testItem,testItem,testItem,nil];
   }
   return self;
 }
@@ -44,10 +42,11 @@
   // TTDPRINT(@"Start");
   return _workListModel;
 }
- */
+*/
 
-- (void)tableViewDidLoadModel:(UITableView*)tableView {
-
+- (void)tableViewDidLoadModel:(UITableView*)tableView {  
+  TTTableMessageItem *testItem = [TTTableMessageItem itemWithTitle:@"任務：(待填)" caption:@"客戶名稱：(待填)" text:@"工作內容：(待填) *設定accessoryURL以檢視完整工作內容" timestamp:[NSDate date] imageURL:nil URL:@"tw.yahoo.com"];
+  self.items = [NSArray arrayWithObjects:testItem,testItem,testItem,testItem,testItem,nil];
 }
 
 

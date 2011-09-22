@@ -8,9 +8,11 @@
 
 #define kRootPath @"tt://root/"
 #define kWorkListPath @"tt://workList/"
+#define kWorkDetailPath @"tt://workDetail/"
+#define kWorkDetailPathWithParameter @"tt://workDetail/"
 #define kMapPath @"tt://map/"
 #define kCameraPath @"tt://camera/"
 
 
 // iJobs APP API
-#define kWorkListAPI @"undefined"
+#define kWorkListAPI @"tw.google.com"

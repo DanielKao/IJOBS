@@ -38,11 +38,13 @@
     //iJobWorkListItem的property未必與record的attribute相同，待API完成後確認.
    } 
   */
+  [super requestDidFinishLoad:request];
 }
 
 - (void)dealloc
 {
-    [super dealloc];
+  TT_RELEASE_SAFELY(_workListItems);
+  [super dealloc];
 }
 
 
