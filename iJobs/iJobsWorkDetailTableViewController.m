@@ -11,6 +11,8 @@
 
 @interface iJobsWorkDetailTableViewController()
 - (NSMutableArray *)arrayWithWorkDetailTableItem:(iJobsWorkListItem *)workItem;
+- (void)addSegmentedControll;
+- (void)actionsForSegment:(id)sender;
 @end
 
 @implementation iJobsWorkDetailTableViewController
@@ -59,11 +61,35 @@
 - (void)loadView
 { 
   [super loadView];
+  
   NSMutableArray *detailItems = [self arrayWithWorkDetailTableItem:self.workItem];
   self.dataSource = [TTListDataSource dataSourceWithItems:detailItems];
+  [self addSegmentedControll];
+  }
+
+- (void)addSegmentedControll {
+  
+  CGFloat positionY = self.view.bounds.size.height - self.navigationController.navigationBar.height;
+  
+  UISegmentedControl *segmentControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"工作說明", @"地圖", @"街景", @"影像回報", nil]];
+  [segmentControl addTarget:self action:@selector(actionsForSegment:) forControlEvents:UIControlEventValueChanged];
+  segmentControl.frame = CGRectMake(0, 0, 308, 29);
+  segmentControl.segmentedControlStyle = UISegmentedControlStyleBar;
+  [segmentControl setSelectedSegmentIndex:0];
+  
+  UIToolbar *bottomBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, positionY, 320, self.navigationController.navigationBar.height)];  
+  [bottomBar setItems:[NSArray arrayWithObject:[[UIBarButtonItem alloc] initWithCustomView:segmentControl]]];
+  [self.view addSubview:bottomBar];
+  //  UIBarButtonItem *cameraButton = [[UIBarButtonItem alloc] initWithTitle:@"影像回報" style:UIBarButtonItemStyleBordered target:self action:nil];
+  //  UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] initWithTitle:@"地圖" style:UIBarButtonItemStyleBordered target:self action:nil];
+  //  UIBarButtonItem *streetViewButton = [[UIBarButtonItem alloc] initWithTitle:@"街景" style:UIBarButtonItemStyleBordered target:self action:nil];
+  //  
+  //  UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+  //  
+  //  NSMutableArray *buttons = [NSMutableArray arrayWithObjects:cameraButton, flexibleSpace, mapButton, flexibleSpace,streetViewButton, nil];
+  
 
 }
-
 
 /*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -103,6 +129,10 @@
                                  [TTTableTextItem itemWithText: missionLocationAddressField],
                                  [TTTableTextItem itemWithText: missionDateField],
                                  [TTTableTextItem itemWithText: missionDetailField],nil];
+
+}
+
+- (void)actionsForSegment:(id)sender {
 
 }
 
