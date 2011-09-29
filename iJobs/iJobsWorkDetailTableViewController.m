@@ -65,7 +65,7 @@
   NSMutableArray *detailItems = [self arrayWithWorkDetailTableItem:self.workItem];
   self.dataSource = [TTListDataSource dataSourceWithItems:detailItems];
   [self addSegmentedControll];
-  }
+}
 
 - (void)addSegmentedControll {
   
@@ -133,7 +133,9 @@
 }
 
 - (void)actionsForSegment:(id)sender {
-
+  UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
+  TTDPRINT(@"%@", segmentedControl);
+  TTDPRINT(@"selected segment %i", segmentedControl.selectedSegmentIndex);
 }
 
 @end

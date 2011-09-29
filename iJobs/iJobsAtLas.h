@@ -19,4 +19,6 @@
 #define kParameterWorkItem @"parameterWorkItem"
 
 // iJobs APP API
+#define kLoginAPI @"http://ijobsbynccucs.heroku.com/signin"
+#define kLogoutAPI @"http://ijobsbynccucs.heroku.com/signout"
 #define kWorkListAPI @"tw.google.com"
