@@ -39,6 +39,7 @@
 		E9B6D912142B0A3700E36419 /* iJobsWorkListTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B6D911142B0A3700E36419 /* iJobsWorkListTableViewDelegate.m */; };
 		E9F72A1114332A23006062CE /* iJobsUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F72A1014332A23006062CE /* iJobsUserInfo.m */; };
 		E9F72A1514332A5C006062CE /* iJobsUserLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F72A1414332A5C006062CE /* iJobsUserLoginManager.m */; };
+		E9F72A181434AC27006062CE /* iJobsPhotoReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F72A171434AC26006062CE /* iJobsPhotoReportViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,6 +274,8 @@
 		E9F72A1014332A23006062CE /* iJobsUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iJobsUserInfo.m; sourceTree = "<group>"; };
 		E9F72A1314332A5C006062CE /* iJobsUserLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iJobsUserLoginManager.h; sourceTree = "<group>"; };
 		E9F72A1414332A5C006062CE /* iJobsUserLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iJobsUserLoginManager.m; sourceTree = "<group>"; };
+		E9F72A161434AC26006062CE /* iJobsPhotoReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iJobsPhotoReportViewController.h; sourceTree = "<group>"; };
+		E9F72A171434AC26006062CE /* iJobsPhotoReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iJobsPhotoReportViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -478,6 +481,8 @@
 				E9B6D9021429E60D00E36419 /* iJobsWorkListTableViewController.m */,
 				E9B6D90D142B00BC00E36419 /* iJobsWorkDetailTableViewController.h */,
 				E9B6D90E142B00BC00E36419 /* iJobsWorkDetailTableViewController.m */,
+				E9F72A161434AC26006062CE /* iJobsPhotoReportViewController.h */,
+				E9F72A171434AC26006062CE /* iJobsPhotoReportViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -812,6 +817,7 @@
 				E9B6D912142B0A3700E36419 /* iJobsWorkListTableViewDelegate.m in Sources */,
 				E9F72A1114332A23006062CE /* iJobsUserInfo.m in Sources */,
 				E9F72A1514332A5C006062CE /* iJobsUserLoginManager.m in Sources */,
+				E9F72A181434AC27006062CE /* iJobsPhotoReportViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

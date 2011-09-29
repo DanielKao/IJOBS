@@ -8,11 +8,14 @@
 
 #import "iJobsWorkDetailTableViewController.h"
 #import "iJobsWorkListItem.h"
+#import "iJobsPhotoReportViewController.h"
 
 @interface iJobsWorkDetailTableViewController()
+
 - (NSMutableArray *)arrayWithWorkDetailTableItem:(iJobsWorkListItem *)workItem;
 - (void)addSegmentedControll;
 - (void)actionsForSegment:(id)sender;
+- (void)photoReport;
 @end
 
 @implementation iJobsWorkDetailTableViewController
@@ -62,6 +65,8 @@
 { 
   [super loadView];
   
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"影像回報" style:UIBarButtonItemStylePlain target:self action:@selector(photoReport)];
+  
   NSMutableArray *detailItems = [self arrayWithWorkDetailTableItem:self.workItem];
   self.dataSource = [TTListDataSource dataSourceWithItems:detailItems];
   [self addSegmentedControll];
@@ -71,7 +76,7 @@
   
   CGFloat positionY = self.view.bounds.size.height - self.navigationController.navigationBar.height;
   
-  UISegmentedControl *segmentControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"工作說明", @"地圖", @"街景", @"影像回報", nil]];
+  UISegmentedControl *segmentControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"工作說明", @"地圖", @"街景", nil]];
   [segmentControl addTarget:self action:@selector(actionsForSegment:) forControlEvents:UIControlEventValueChanged];
   segmentControl.frame = CGRectMake(0, 0, 308, 29);
   segmentControl.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -136,6 +141,33 @@
   UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
   TTDPRINT(@"%@", segmentedControl);
   TTDPRINT(@"selected segment %i", segmentedControl.selectedSegmentIndex);
+}
+
+- (void)photoReport {
+  UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+  picker.delegate = self;
+  if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+  }else {
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;  
+  }
+
+  [self presentModalViewController:picker animated:YES];  
+  [picker release];
+}
+
+#pragma mark UIImagePickerController delegate methods
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+  //UIImage *selectedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+  UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+  iJobsPhotoReportViewController *reportViewController = [[iJobsPhotoReportViewController alloc] initWithImage:originalImage imagePicker:picker];
+  [picker pushViewController:reportViewController animated:YES];
+//  [picker dismissModalViewControllerAnimated:YES];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+  [picker dismissModalViewControllerAnimated:YES];
 }
 
 @end

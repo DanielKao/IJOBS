@@ -26,6 +26,7 @@
   /*This is for mockup data, after the API is completed, selector should change*/
   [map from:kWorkListPath toViewController:[iJobsWorkListTableViewController class]];
   [map from:kWorkDetailPath toViewController:[iJobsWorkDetailTableViewController class]];
+  [map from:kCameraPath toModalViewController:[UIImagePickerController class]];
   if (![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:kRootPath]];
   }

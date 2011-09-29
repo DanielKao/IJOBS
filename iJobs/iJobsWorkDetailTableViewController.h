@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @class iJobsWorkListItem;
-@interface iJobsWorkDetailTableViewController : TTTableViewController {
+@class iJobsPhotoReportViewController;
+
+@interface iJobsWorkDetailTableViewController : TTTableViewController<UIImagePickerControllerDelegate> {
   iJobsWorkListItem *_workItem;
 }
 
