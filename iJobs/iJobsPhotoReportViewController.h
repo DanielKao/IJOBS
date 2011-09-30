@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface iJobsPhotoReportViewController : UIViewController {
+@interface iJobsPhotoReportViewController : UIViewController<TTPostControllerDelegate> {
   UIToolbar *_bottomToolbar;
   UIImagePickerController *_picker;
   UIImage *_image;

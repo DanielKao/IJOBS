@@ -84,13 +84,13 @@
   
   _bottomToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(positionX, positionY, width, height)];
 
-  UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelPhotoReportViewController)];
+  UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancelPhotoReportViewController)] autorelease];
   
-  UIBarButtonItem *addCaptionButton = [[UIBarButtonItem alloc] initWithTitle:@"加上註解" style:UIBarButtonItemStylePlain target:self action:@selector(AddCaptionToImage)];
+  UIBarButtonItem *addCaptionButton = [[[UIBarButtonItem alloc] initWithTitle:@"加上註解" style:UIBarButtonItemStylePlain target:self action:@selector(addCaptionToImage)] autorelease];
   
-  UIBarButtonItem *uploadButton = [[UIBarButtonItem alloc] initWithTitle:@"回報" style:UIBarButtonItemStylePlain target:self action:@selector(uploadImage)];
+  UIBarButtonItem *uploadButton = [[[UIBarButtonItem alloc] initWithTitle:@"上傳" style:UIBarButtonItemStylePlain target:self action:@selector(uploadImage)] autorelease];
   
-  UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+  UIBarButtonItem *flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] autorelease];
   
   [_bottomToolbar setItems:[NSArray arrayWithObjects:cancelButton, flexibleSpace,addCaptionButton, flexibleSpace, uploadButton, nil]];
   
@@ -104,38 +104,53 @@
   CGFloat width = 320;
   CGRect imageFrame = CGRectMake(positionX, positionY, width, height);
 //  UIImage *shrunkemImage = shrinkImage(self.image, imageFrame.size, imageFrame.origin);
-  UIImageView *imageView = [[UIImageView alloc] initWithImage:self.image];
+  UIImageView *imageView = [[[UIImageView alloc] initWithImage:self.image] autorelease];
   imageView.frame = imageFrame;
 //  imageView.frame = CGRectMake(positionX, positionY, width, height);
   
   [self.view addSubview:imageView];
 }
 
-/*
-#pragma mark - 
-static UIImage *shrinkImage(UIImage *original, CGSize size, CGPoint origin) {
-  TTDPRINT(@"originY: %f", origin.y);
-  CGFloat scale = [UIScreen mainScreen].scale; CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-  CGContextRef context = CGBitmapContextCreate(NULL, size.width * scale, size.height * scale, 8, 0, colorSpace, kCGImageAlphaPremultipliedFirst);
-  CGContextDrawImage(context,
-                     CGRectMake(origin.x, origin.y, size.width * scale, size.height * scale),
-                     original.CGImage); 
-  CGImageRef shrunken = CGBitmapContextCreateImage(context); 
-  UIImage *final = [UIImage imageWithCGImage:shrunken];
-  CGContextRelease(context); 
-  CGImageRelease(shrunken);
-  return final;
-}
- */
-
 - (void)cancelPhotoReportViewController {
-  [_picker popToRootViewControllerAnimated:YES];
+//  [_picker popToRootViewControllerAnimated:YES];
+  [_picker popViewControllerAnimated:YES];
 }
 - (void)addCaptionToImage {
-  
+  [[TTNavigator navigator].URLMap from:@"tt://post"
+                      toViewController:self selector:@selector(post:)];
+  TTURLAction *action = [TTURLAction actionWithURLPath:@"tt://post"];
+  [[TTNavigator navigator] openURLAction:action];
+
 }
 - (void)uploadImage {
 
 }
+
+- (UIViewController*)post:(NSDictionary*)query {
+  TTPostController* controller = [[[TTPostController alloc] initWithNavigatorURL:nil
+                                                                           query:
+                                   [NSDictionary dictionaryWithObjectsAndKeys:@"", @"text", self, @"delegate", nil]]
+                                  autorelease];
+  controller.originView = [query objectForKey:@"__target__"];
+  return controller;
+}
+
+
+#pragma - TTPostController delegate
+
+- (BOOL)postController:(TTPostController*)postController willPostText:(NSString*)text {
+
+  return YES;
+}
+- (void)postController: (TTPostController*)postController
+           didPostText: (NSString*)text
+            withResult: (id)result {
+
+}
+
+- (void)postControllerDidCancel:(TTPostController*)postController {
+  [_picker popViewControllerAnimated:YES];
+}
+
 
 @end
