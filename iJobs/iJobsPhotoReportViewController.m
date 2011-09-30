@@ -13,8 +13,7 @@
 - (void)initializeBottomToolbar;
 - (void)initializeImageView;
 - (void)cancelPhotoReportViewController;
-- (void)addCaptionToImage;
-- (void)uploadImage;
+- (void)uploadImage:(NSString *)postedText;
 @end
 
 
@@ -88,7 +87,7 @@
   
   UIBarButtonItem *addCaptionButton = [[[UIBarButtonItem alloc] initWithTitle:@"加上註解" style:UIBarButtonItemStylePlain target:self action:@selector(addCaptionToImage)] autorelease];
   
-  UIBarButtonItem *uploadButton = [[[UIBarButtonItem alloc] initWithTitle:@"上傳" style:UIBarButtonItemStylePlain target:self action:@selector(uploadImage)] autorelease];
+  UIBarButtonItem *uploadButton = [[[UIBarButtonItem alloc] initWithTitle:@"上傳" style:UIBarButtonItemStylePlain target:self action:@selector(uploadImage:)] autorelease];
   
   UIBarButtonItem *flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] autorelease];
   
@@ -122,15 +121,13 @@
   [[TTNavigator navigator] openURLAction:action];
 
 }
-- (void)uploadImage {
-
+- (void)uploadImage:(NSString *)postedText {
+  //use TTURLRequeseModel to upload image
 }
 
-- (UIViewController*)post:(NSDictionary*)query {
-  TTPostController* controller = [[[TTPostController alloc] initWithNavigatorURL:nil
-                                                                           query:
-                                   [NSDictionary dictionaryWithObjectsAndKeys:@"", @"text", self, @"delegate", nil]]
-                                  autorelease];
+- (UIViewController *)post:(NSDictionary*)query {
+  TTPostController* controller = [[[TTPostController alloc] initWithNavigatorURL:nil query:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"text", self, @"delegate", nil]] autorelease];
+
   controller.originView = [query objectForKey:@"__target__"];
   return controller;
 }
@@ -139,7 +136,7 @@
 #pragma - TTPostController delegate
 
 - (BOOL)postController:(TTPostController*)postController willPostText:(NSString*)text {
-
+  [self uploadImage:text];
   return YES;
 }
 - (void)postController: (TTPostController*)postController

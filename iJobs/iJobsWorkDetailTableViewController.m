@@ -9,11 +9,12 @@
 #import "iJobsWorkDetailTableViewController.h"
 #import "iJobsWorkListItem.h"
 #import "iJobsPhotoReportViewController.h"
-
+#import "MapKit/MapKit.h"
 @interface iJobsWorkDetailTableViewController()
 
 - (NSMutableArray *)arrayWithWorkDetailTableItem:(iJobsWorkListItem *)workItem;
 - (void)addSegmentedControll;
+- (void)addMapView;
 - (void)actionsForSegment:(id)sender;
 - (void)photoReport;
 @end
@@ -21,6 +22,7 @@
 @implementation iJobsWorkDetailTableViewController
 
 @synthesize workItem = _workItem;
+@synthesize mapView = _mapView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +48,7 @@
 - (void)dealloc
 {
   TT_RELEASE_SAFELY(_workItem);
+  TT_RELEASE_SAFELY(_mapView);
   [super dealloc];
 }
 
@@ -69,7 +72,22 @@
   
   NSMutableArray *detailItems = [self arrayWithWorkDetailTableItem:self.workItem];
   self.dataSource = [TTListDataSource dataSourceWithItems:detailItems];
+  
+  self.view.tag = 0;
   [self addSegmentedControll];
+  [self addMapView];
+}
+
+- (void)addMapView {
+  CGRect frame = CGRectMake(0, 0, 320, self.view.bounds.size.height - self.navigationController.navigationBar.height);
+  
+  _mapView = [[MKMapView alloc] initWithFrame:frame];
+  _mapView.mapType = MKMapTypeStandard;
+  _mapView.showsUserLocation = YES;
+  _mapView.tag = 1;
+
+  [self.view addSubview:_mapView];
+  [self.view sendSubviewToBack:_mapView];
 }
 
 - (void)addSegmentedControll {
@@ -95,14 +113,6 @@
   
 
 }
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-*/
 
 - (void)viewDidUnload
 {
@@ -139,8 +149,14 @@
 
 - (void)actionsForSegment:(id)sender {
   UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
-  TTDPRINT(@"%@", segmentedControl);
-  TTDPRINT(@"selected segment %i", segmentedControl.selectedSegmentIndex);
+  NSInteger selectedIndex = segmentedControl.selectedSegmentIndex;
+  if (selectedIndex == 0) {
+    [self.view sendSubviewToBack:_mapView];
+  }else if(selectedIndex == 1) {
+    [self.view bringSubviewToFront:_mapView];
+  }else {
+    
+  }
 }
 
 - (void)photoReport {
@@ -163,7 +179,6 @@
   UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
   iJobsPhotoReportViewController *reportViewController = [[iJobsPhotoReportViewController alloc] initWithImage:originalImage imagePicker:picker];
   [picker pushViewController:reportViewController animated:YES];
-//  [picker dismissModalViewControllerAnimated:YES];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

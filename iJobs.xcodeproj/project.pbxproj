@@ -17,6 +17,7 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		E90BD1B91436091F00400F76 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90BD1B81436091F00400F76 /* MapKit.framework */; };
 		E910FD501429D3FA0034AEBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E910FD4F1429D3FA0034AEBB /* UIKit.framework */; };
 		E910FD521429D3FA0034AEBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E910FD511429D3FA0034AEBB /* Foundation.framework */; };
 		E910FD541429D3FB0034AEBB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E910FD531429D3FB0034AEBB /* CoreGraphics.framework */; };
@@ -238,6 +239,7 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = submodule/Three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = submodule/Three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = submodule/Three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		E90BD1B81436091F00400F76 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E910FD4B1429D3FA0034AEBB /* iJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E910FD4F1429D3FA0034AEBB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E910FD511429D3FA0034AEBB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -283,6 +285,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E90BD1B91436091F00400F76 /* MapKit.framework in Frameworks */,
 				3206A0F794A6D7A3F259DBF5 /* libextThree20JSON+SBJSON.a in Frameworks */,
 				3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */,
 				320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */,
@@ -387,6 +390,7 @@
 		E910FD401429D3FA0034AEBB = {
 			isa = PBXGroup;
 			children = (
+				E90BD1B81436091F00400F76 /* MapKit.framework */,
 				E910FD551429D3FB0034AEBB /* iJobs */,
 				E910FD6F1429D3FB0034AEBB /* iJobsTests */,
 				E910FD4E1429D3FA0034AEBB /* Frameworks */,
