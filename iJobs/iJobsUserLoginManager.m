@@ -7,8 +7,102 @@
 //
 
 #import "iJobsUserLoginManager.h"
-
+#import "iJobsUserInfo.h"
 
 @implementation iJobsUserLoginManager
+
+#define SESSION_EXPIRED_MINS 240
+
+@synthesize userInfo = _userInfo;
+@synthesize errorMessage = _errorMessage;
+//@synthesize userAccount = _userAccount;
+//@synthesize userPassword = _userPassword;
+
+static iJobsUserLoginManager *gSharedInstance;
+
++ (iJobsUserLoginManager *)sharedInstance {
+  @synchronized(self) {
+    if (gSharedInstance == nil) {
+      gSharedInstance = [[iJobsUserLoginManager alloc] init];
+    }
+  }
+  return gSharedInstance;
+}
+
+- (id)init {
+  if ((self = [super init])) {
+    _userInfo = [[iJobsUserInfo alloc] init];
+  }
+  return self;
+}
+
+- (id)retain {
+  return self;
+}
+
+- (NSUInteger)retainCount {
+  return UINT_MAX;  // denotes an object that cannot be released
+}
+
+- (void)release {
+  //do nothing
+}
+
+- (id)autorelease {
+  return self;
+}
+
+- (void)logout {
+  TT_RELEASE_SAFELY(_userInfo);
+  TT_RELEASE_SAFELY(_errorMessage);
+}
+
+- (void)loginWithUserEmail:(NSString *)userEmail password:(NSString *)userPassword {
+  TTURLRequest *request = [TTURLRequest requestWithURL:kLoginAPI delegate:self];
+  request.httpMethod = @"POST";
+  
+  [request.parameters setObject:userEmail forKey:@"email"];
+  [request.parameters setObject:userPassword forKey:@"password"];
+  
+  request.cachePolicy = TTURLRequestCachePolicyNone;
+  request.response = [[[TTURLJSONResponse alloc] init] autorelease];
+  
+  [request send];
+}
+
+- (BOOL)isUserLogin {
+  if (_userInfo == nil) {
+    return NO;
+  } else {
+    return YES;
+  }
+}
+
+#pragma mark -
+#pragma mark TTURLRequest methods
+
+- (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error {
+  /*
+  NSData *responseData = [[error userInfo] objectForKey:@"responsedata"];
+  _errorMessage = [[NSString alloc] initWithData:responseData encoding:NSASCIIStringEncoding];
+  TTDPRINT(@"errorMessage: %@", _errorMessage);
+   */
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"錯誤" message:@"請檢查帳號密碼或洽系統管理員" delegate:nil cancelButtonTitle:@"確認" otherButtonTitles:nil];
+  [alertView show];
+  TT_RELEASE_SAFELY(alertView);
+}
+
+- (void)requestDidFinishLoad:(TTURLRequest*)request {
+  TTURLJSONResponse *response = request.response;
+  NSDictionary *itemsDictionary = response.rootObject;
+  TTDPRINT(@"Show user info itemsDictionary: %@", itemsDictionary);
+  TTDASSERT(([[itemsDictionary objectForKey:@"current_user"] isKindOfClass:[NSDictionary class]]));
+  NSDictionary *userInfoDicionary = [itemsDictionary objectForKey:@"current_user"];
+  
+  _userInfo = [[iJobsUserInfo alloc] initWithUserName:[userInfoDicionary objectForKey:@"name"] userEmail:[userInfoDicionary objectForKey:@"email"] userId:[userInfoDicionary objectForKey:@"id"] admin:[[userInfoDicionary objectForKey:@"admin"] boolValue]];
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:kLoginNotification object:nil];
+}
+
 
 @end

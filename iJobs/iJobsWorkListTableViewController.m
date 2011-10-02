@@ -9,8 +9,14 @@
 #import "iJobsWorkListTableViewController.h"
 #import "iJobsWorkListDataSource.h"
 #import "iJobsWorkListTableViewDelegate.h"
+#import "iJobsUserLoginManager.h"
+#import "DDAlertPrompt.h"
+
 @interface iJobsWorkListTableViewController()
-- (void)login;
+- (void)loginPrompt;
+- (void)loginWithUserEmail:(NSString *)userEmail userPassword:(NSString *)userPassword;
+- (void)logout;
+- (void)changeLoginButton:(NSNotification *)notification;
 @end
 
 @implementation iJobsWorkListTableViewController
@@ -24,9 +30,20 @@
       self.title = @"工作清單";
       self.variableHeightRows = YES;
       //_tableViewDelegate = [[iJobsWorkListTableViewDelegate alloc] initWithController:self];
-      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"登入" style:UIBarButtonItemStyleBordered target:self action:@selector(login)];
+      self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登入" style:UIBarButtonItemStyleBordered target:self action:@selector(loginPrompt)] autorelease];
     }
     return self;
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLoginButton:) name:kLoginNotification object:nil];
+  
+}
+
+- (void)viewDidUnload {
+  [super viewDidUnload];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)dealloc
@@ -41,8 +58,43 @@
 
 #pragma - private method
 
-- (void)login {
+- (void)loginPrompt {
+  DDAlertPrompt *loginPrompt = [[DDAlertPrompt alloc] initWithTitle:@"Sign in to iJobs" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitle:@"Sign In"]; 
+  [loginPrompt show];
+  [loginPrompt release];
+}
 
+- (void)loginWithUserEmail:(NSString *)userEmail userPassword:(NSString *)userPassword {
+  iJobsUserLoginManager *userLoginManager = [iJobsUserLoginManager sharedInstance];
+  [userLoginManager loginWithUserEmail:userEmail password:userPassword];
+}
+
+- (void)changeLoginButton:(NSNotification *)notification {
+  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登出" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
+}
+
+- (void)logout {
+  [[iJobsUserLoginManager sharedInstance] logout];
+  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登入" style:UIBarButtonItemStyleBordered target:self action:@selector(loginPrompt)] autorelease];
+}
+#pragma - DDAlertPrompt Delegate
+
+- (void)didPresentAlertView:(UIAlertView *)alertView {
+  if ([alertView isKindOfClass:[DDAlertPrompt class]]) {
+    DDAlertPrompt *loginPrompt = (DDAlertPrompt *)alertView;
+    [loginPrompt.plainTextField becomeFirstResponder];      
+    [loginPrompt setNeedsLayout];
+  }
+}
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+  if (buttonIndex == [alertView cancelButtonIndex]) {
+  } else {
+    if ([alertView isKindOfClass:[DDAlertPrompt class]]) {
+      DDAlertPrompt *loginPrompt = (DDAlertPrompt *)alertView;
+      [self loginWithUserEmail:loginPrompt.plainTextField.text userPassword:loginPrompt.secretTextField.text];
+    }
+  }
 }
 
 @end
