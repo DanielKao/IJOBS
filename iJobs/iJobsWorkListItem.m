@@ -13,6 +13,7 @@
 
 @synthesize missionTitle = _missionTitle;
 @synthesize missionDetail = _missionDetail;
+@synthesize missionLocation = _missionLocation;
 @synthesize missionLocationAddress = _missionLocationAddress;
 @synthesize missionDate = _missionDate;
 @synthesize workerName = _workerName;
@@ -20,11 +21,12 @@
 @synthesize customerName = _customerName;
 @synthesize customerID = _customerID;
 
-- (id)initWithTitle:(NSString *)title Detail:(NSString *)detail Location:(NSString *)location date:(NSString *)date workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID {
+- (id)initWithTitle:(NSString *)title Detail:(NSString *)detail Location:(NSString *)location address:(NSString *)address date:(NSString *)date workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID {
   if ((self = [super init])) {
     self.missionTitle = title;
     self.missionDetail = detail;
-    self.missionLocationAddress = location;
+    self.missionLocationAddress = address;
+    self.missionLocation = location;
     self.missionDate = date;
     self.workerName = workerName;
     self.workerID = workerID;
@@ -39,6 +41,7 @@
   TT_RELEASE_SAFELY(_missionTitle);
   TT_RELEASE_SAFELY(_missionDetail);
   TT_RELEASE_SAFELY(_missionDate);
+  TT_RELEASE_SAFELY(_missionLocation);
   TT_RELEASE_SAFELY(_missionLocationAddress);
   TT_RELEASE_SAFELY(_workerID);
   TT_RELEASE_SAFELY(_workerName);

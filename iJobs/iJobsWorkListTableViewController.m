@@ -9,6 +9,10 @@
 #import "iJobsWorkListTableViewController.h"
 #import "iJobsWorkListDataSource.h"
 #import "iJobsWorkListTableViewDelegate.h"
+@interface iJobsWorkListTableViewController()
+- (void)login;
+@end
+
 @implementation iJobsWorkListTableViewController
 
 @synthesize tableViewDelegate = _tableViewDelegate;
@@ -20,6 +24,7 @@
       self.title = @"工作清單";
       self.variableHeightRows = YES;
       //_tableViewDelegate = [[iJobsWorkListTableViewDelegate alloc] initWithController:self];
+      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"登入" style:UIBarButtonItemStyleBordered target:self action:@selector(login)];
     }
     return self;
 }
@@ -29,16 +34,15 @@
     [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 - (void)createModel {
 //  self.dataSource = [[iJobsWorkListDataSource alloc] initWithWorkListAPI];
   self.dataSource = [[iJobsWorkListDataSource alloc] initWithMockupData];
 }
+
+#pragma - private method
+
+- (void)login {
+
+}
+
 @end

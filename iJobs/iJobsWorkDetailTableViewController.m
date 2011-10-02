@@ -39,6 +39,7 @@
   self = [super init];
   if (self != nil) {
     self.workItem = [query objectForKey:kParameterWorkItem];
+    TTDPRINT(@"URL: %@", URL);
     TTDPRINT(@"workItem :%@", self.workItem);
   }
   return self;

@@ -13,6 +13,7 @@
     /* 用來接收工作清單的每筆資料, iVar待確認*/
   NSString *_missionTitle;
   NSString *_missionDetail;
+  NSString *_missionLocation;
   NSString *_missionLocationAddress;
   NSString *_missionDate;
   NSString *_workerName;
@@ -23,6 +24,7 @@
 
 @property(nonatomic, retain) NSString *missionTitle;
 @property(nonatomic, retain) NSString *missionDetail;
+@property(nonatomic, retain) NSString *missionLocation;
 @property(nonatomic, retain) NSString *missionLocationAddress;
 @property(nonatomic, retain) NSString *missionDate;
 @property(nonatomic, retain) NSString *workerName;
@@ -30,5 +32,5 @@
 @property(nonatomic, retain) NSString *customerName;
 @property(nonatomic, retain) NSString *customerID;
           
-- (id)initWithTitle:(NSString *)title Detail:(NSString *)detail Location:(NSString *)location date:(NSString *)date workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID;
+- (id)initWithTitle:(NSString *)title Detail:(NSString *)detail Location:(NSString *)location address:(NSString *)address date:(NSString *)date workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID;
 @end

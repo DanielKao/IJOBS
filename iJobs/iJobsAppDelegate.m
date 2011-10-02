@@ -21,15 +21,15 @@
   navigator.window = _window;
   TTURLMap *map = navigator.URLMap;
   [map from:@"*" toViewController:[TTWebController class]];
-  [map from:kRootPath toViewController:[iJobsSummaryTableViewController class]];
-  
+  //[map from:kRootPath toViewController:[iJobsSummaryTableViewController class]];
+  [map from:kRootPath toViewController:[iJobsWorkListTableViewController class]];
   /*This is for mockup data, after the API is completed, selector should change*/
   [map from:kWorkListPath toViewController:[iJobsWorkListTableViewController class]];
   [map from:kWorkDetailPath toViewController:[iJobsWorkDetailTableViewController class]];
   [map from:kCameraPath toModalViewController:[UIImagePickerController class]];
-  if (![navigator restoreViewControllers]) {
+//  if (![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:kRootPath]];
-  }
+  //}
   return YES;
 }
 

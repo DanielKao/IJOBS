@@ -61,17 +61,34 @@
 
 - (void)tableViewDidLoadModel:(UITableView*)tableView {  
 
-  iJobsWorkListItem *mockupItem = [[iJobsWorkListItem alloc] initWithTitle:@"待填" Detail:@"待填" Location:@"待填" date:@"待填" workerName:@"待填" workerID:@"待填" customerName:@"待填" customerID:@"待填"];
+  iJobsWorkListItem *mockupItem = [[iJobsWorkListItem alloc] initWithTitle:@"會見政大老闆" Detail:@"洽談政大資訊教室電腦裝配外包事宜" Location:@"國立政治大學" address:@"台北市文山區指南路2段64號" date:@"2012/10/03 15:00" workerName:@"王小華" workerID:@"w11111" customerName:@"吳濕華" customerID:@"c11111"];
+  
+  iJobsWorkListItem *mockupItem2 = [[iJobsWorkListItem alloc] initWithTitle:@"會見蔡小英" Detail:@"洽談民小黨競選總部資訊設備架設事宜" Location:@"新光三越南西店一館" address:@"104台北市南京西路12號" date:@"2012/10/04 15:00" workerName:@"王小華" workerID:@"w11111" customerName:@"蔡小英" customerID:@"c11112"];
+  
+  iJobsWorkListItem *mockupItem3 = [[iJobsWorkListItem alloc] initWithTitle:@"會見馬小九" Detail:@"洽談國小黨競選總部資訊設備架設事宜" Location:@"太平洋SOGO百貨復興館" address:@"106台北市忠孝東路三段300號" date:@"2012/10/04 18:00" workerName:@"王小華" workerID:@"w11111" customerName:@"馬小九" customerID:@"c11113"];
+  
+  iJobsWorkListItem *mockupItem4 = [[iJobsWorkListItem alloc] initWithTitle:@"會見相聲瓦舍宋少卿先生" Detail:@"洽談相聲瓦舍排練場電腦與錄影設備裝配事宜" Location:@"相聲瓦舍劇團總部" address:@"新北市新店區北新路2段64號" date:@"2012/10/05 12:00" workerName:@"王小華" workerID:@"w11111" customerName:@"宋少卿" customerID:@"c11114"];
 
-  self.workListModel.workListItems = [NSMutableArray arrayWithObjects:mockupItem,mockupItem,mockupItem,mockupItem,mockupItem, nil];
+  self.workListModel.workListItems = [NSMutableArray arrayWithObjects:mockupItem,mockupItem2,mockupItem3,mockupItem4, nil];
   
   NSMutableArray *array = [NSMutableArray array];
+  NSArray *temp = [self.workListModel.workListItems retain];
   
-  for (int i = 0; i < 5; i++) {
-    [array addObject:[TTTableMessageItem itemWithTitle:@"任務：(待填)" caption:@"客戶名稱：(待填)" text:@"工作內容：(待填) *設定accessoryURL以檢視完整工作內容" timestamp:[NSDate date] URL:[NSString stringWithFormat:kWorkDetailPathWithParameterNumber, i]]];
-    TTDPRINT(@"item url: %@", [NSString stringWithFormat:kWorkDetailPathWithParameterNumber, i]);
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat:@"yyyy/MM/dd HH:mm"];
+  
+  for (iJobsWorkListItem *item in temp) {
+    [array addObject:
+     [TTTableMessageItem itemWithTitle:[NSString stringWithFormat:@"任務:%@", item.missionTitle] 
+                               caption:[NSString stringWithFormat:@"客戶名稱:%@", item.customerName] 
+                                  text:[NSString stringWithFormat:@"%@", item.missionDetail]
+                             timestamp:[dateFormatter dateFromString:item.missionDate] 
+                         URL:[NSString stringWithFormat:kWorkDetailPathWithParameterNumber, [temp indexOfObject:item]]]];
   }
   self.items = array;
+  
+  TT_RELEASE_SAFELY(dateFormatter);
+  TT_RELEASE_SAFELY(temp);
 }
 
 -(void)displayWorkDetailWithParameter:(NSString *)number {
