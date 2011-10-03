@@ -15,6 +15,7 @@
 
 @synthesize userInfo = _userInfo;
 @synthesize errorMessage = _errorMessage;
+@synthesize delegate = _delegate;
 //@synthesize userAccount = _userAccount;
 //@synthesize userPassword = _userPassword;
 
@@ -31,7 +32,7 @@ static iJobsUserLoginManager *gSharedInstance;
 
 - (id)init {
   if ((self = [super init])) {
-    _userInfo = [[iJobsUserInfo alloc] init];
+    
   }
   return self;
 }
@@ -58,6 +59,7 @@ static iJobsUserLoginManager *gSharedInstance;
 }
 
 - (void)loginWithUserEmail:(NSString *)userEmail password:(NSString *)userPassword {
+
   TTURLRequest *request = [TTURLRequest requestWithURL:kLoginAPI delegate:self];
   request.httpMethod = @"POST";
   
@@ -90,6 +92,7 @@ static iJobsUserLoginManager *gSharedInstance;
   UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"錯誤" message:@"請檢查帳號密碼或洽系統管理員" delegate:nil cancelButtonTitle:@"確認" otherButtonTitles:nil];
   [alertView show];
   TT_RELEASE_SAFELY(alertView);
+  [super request:request didFailLoadWithError:error];
 }
 
 - (void)requestDidFinishLoad:(TTURLRequest*)request {
@@ -98,9 +101,10 @@ static iJobsUserLoginManager *gSharedInstance;
   TTDPRINT(@"Show user info itemsDictionary: %@", itemsDictionary);
   TTDASSERT(([[itemsDictionary objectForKey:@"current_user"] isKindOfClass:[NSDictionary class]]));
   NSDictionary *userInfoDicionary = [itemsDictionary objectForKey:@"current_user"];
-  
+
   _userInfo = [[iJobsUserInfo alloc] initWithUserName:[userInfoDicionary objectForKey:@"name"] userEmail:[userInfoDicionary objectForKey:@"email"] userId:[userInfoDicionary objectForKey:@"id"] admin:[[userInfoDicionary objectForKey:@"admin"] boolValue]];
   
+  [_delegate userDidFinishLogin:request];
   [[NSNotificationCenter defaultCenter] postNotificationName:kLoginNotification object:nil];
 }
 

@@ -9,13 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @class iJobsUserInfo;
+@protocol iJobsUserLoginManagerDelegate;
+
 @interface iJobsUserLoginManager : TTURLRequestModel {
   iJobsUserInfo *_userInfo;
   NSString *_errorMessage;
+  id<iJobsUserLoginManagerDelegate> _delegate;
 }
 
 @property(nonatomic, retain) iJobsUserInfo *userInfo;
 @property(nonatomic, copy) NSString *errorMessage;
+@property(nonatomic, retain) id delegate;
 //@property(nonatomic, retain) NSString *userAccount;
 //@property(nonatomic, retain) NSString *userPassword;
 
@@ -24,4 +28,8 @@
 - (void)logout;
 - (BOOL)isUserLogin;
 
+@end
+
+@protocol iJobsUserLoginManagerDelegate
+- (void)userDidFinishLogin:(TTURLRequest *)request;
 @end

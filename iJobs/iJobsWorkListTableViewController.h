@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "iJobsUserLoginManager.h"
 
 @class iJobsWorkListTableViewDelegate;
-@interface iJobsWorkListTableViewController : TTTableViewController {
+@interface iJobsWorkListTableViewController : TTTableViewController<iJobsUserLoginManagerDelegate> {
   iJobsWorkListTableViewDelegate *_tableViewDelegate;
 }
 

@@ -10,6 +10,8 @@
 #import "iJobsWorkListItem.h"
 #import "iJobsPhotoReportViewController.h"
 #import "MapKit/MapKit.h"
+#import "iJobsGoogleMapViewController.h"
+#import "iJobsMapAnnotation.h"
 @interface iJobsWorkDetailTableViewController()
 
 - (NSMutableArray *)arrayWithWorkDetailTableItem:(iJobsWorkListItem *)workItem;
@@ -17,11 +19,16 @@
 - (void)addMapView;
 - (void)actionsForSegment:(id)sender;
 - (void)photoReport;
+
+- (void)createMapPoint:(MKMapView *)mapView coordinateX:(double)coorX coordinateY:(double)coorY title:(NSString*)title subtitle:(NSString*)subtitle;
+- (CLLocationCoordinate2D)addressLocation:(NSString *)chineseAddress;
+
 @end
 
 @implementation iJobsWorkDetailTableViewController
 
 @synthesize workItem = _workItem;
+@synthesize gMapViewController = _gMapViewController;
 @synthesize mapView = _mapView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,7 +56,7 @@
 - (void)dealloc
 {
   TT_RELEASE_SAFELY(_workItem);
-  TT_RELEASE_SAFELY(_mapView);
+  TT_RELEASE_SAFELY(_gMapViewController);
   [super dealloc];
 }
 
@@ -80,15 +87,75 @@
 }
 
 - (void)addMapView {
-  CGRect frame = CGRectMake(0, 0, 320, self.view.bounds.size.height - self.navigationController.navigationBar.height);
   
+  CGRect frame = CGRectMake(0, 0, 320, self.view.bounds.size.height - self.navigationController.navigationBar.height);
+
   _mapView = [[MKMapView alloc] initWithFrame:frame];
+  _mapView.delegate = self;
   _mapView.mapType = MKMapTypeStandard;
   _mapView.showsUserLocation = YES;
-  _mapView.tag = 1;
-
+  _mapView.tag = 1; 
+    
+  //using - (void)createMapPoint:(MKMapView *)mapView coordinateX:(double)coorX coordinateY:(double)coorY title:(NSString*)title subtitle:(NSString*)subtitle;
+  CLLocationCoordinate2D coordinate2D = [self addressLocation:@"台北市文山區指南路2段64號"];
+  [self createMapPoint:_mapView coordinateX:coordinate2D.latitude coordinateY:coordinate2D.longitude title:_workItem.missionTitle subtitle:_workItem.missionLocation];
+  
+  MKCoordinateRegion theRegion;
+  //set region center
+  CLLocationCoordinate2D theCenter;
+  theCenter.latitude = coordinate2D.latitude;
+  theCenter.longitude = coordinate2D.longitude;
+  theRegion.center = theCenter;
+  
+  //set zoom level
+  MKCoordinateSpan theSpan;
+  theSpan.latitudeDelta = 0.009;
+  theSpan.longitudeDelta = 0.009;
+  theRegion.span = theSpan;
+  
+  _mapView.scrollEnabled = YES;
+  _mapView.zoomEnabled = YES;
+  
+  [_mapView setRegion:theRegion];
+  [_mapView regionThatFits:theRegion];
+  
   [self.view addSubview:_mapView];
   [self.view sendSubviewToBack:_mapView];
+
+  /*
+  CGRect frame = CGRectMake(0, 0, 320, self.view.bounds.size.height - self.navigationController.navigationBar.height);
+
+  _gMapViewController = [[iJobsGoogleMapViewController alloc] initWithFrame:frame];
+  
+  _gMapViewController.mapView = [[MKMapView alloc] initWithFrame:frame];
+  _gMapViewController.mapView.mapType = MKMapTypeStandard;
+  _gMapViewController.mapView.showsUserLocation = YES;
+  _gMapViewController.mapView.tag = 1;
+
+  
+  MKCoordinateRegion theRegion;
+  //set region center
+  CLLocationCoordinate2D theCenter;
+  theCenter.latitude = 25.032054;
+  theCenter.longitude = 121.529266;
+  theRegion.center = theCenter;
+  
+  //set zoom level
+  MKCoordinateSpan theSpan;
+  theSpan.latitudeDelta = 0.009;
+  theSpan.longitudeDelta = 0.009;
+  theRegion.span = theSpan;
+  
+  _mapView.scrollEnabled = YES;
+  _mapView.zoomEnabled = YES;
+  
+  [_mapView setRegion:theRegion];
+  [_mapView regionThatFits:theRegion];
+
+  
+  [self.view addSubview:_gMapViewController.mapView];
+  [self.view sendSubviewToBack:_gMapViewController.mapView];
+ */
 }
 
 - (void)addSegmentedControll {
@@ -104,15 +171,6 @@
   UIToolbar *bottomBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, positionY, 320, self.navigationController.navigationBar.height)];  
   [bottomBar setItems:[NSArray arrayWithObject:[[UIBarButtonItem alloc] initWithCustomView:segmentControl]]];
   [self.view addSubview:bottomBar];
-  //  UIBarButtonItem *cameraButton = [[UIBarButtonItem alloc] initWithTitle:@"影像回報" style:UIBarButtonItemStyleBordered target:self action:nil];
-  //  UIBarButtonItem *mapButton = [[UIBarButtonItem alloc] initWithTitle:@"地圖" style:UIBarButtonItemStyleBordered target:self action:nil];
-  //  UIBarButtonItem *streetViewButton = [[UIBarButtonItem alloc] initWithTitle:@"街景" style:UIBarButtonItemStyleBordered target:self action:nil];
-  //  
-  //  UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-  //  
-  //  NSMutableArray *buttons = [NSMutableArray arrayWithObjects:cameraButton, flexibleSpace, mapButton, flexibleSpace,streetViewButton, nil];
-  
-
 }
 
 - (void)viewDidUnload
@@ -156,7 +214,7 @@
   }else if(selectedIndex == 1) {
     [self.view bringSubviewToFront:_mapView];
   }else {
-    
+    //this is for street view.
   }
 }
 
@@ -184,6 +242,68 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
   [picker dismissModalViewControllerAnimated:YES];
+}
+
+#pragma -
+#pragma mark MapView Methods
+
+- (void)createMapPoint:(MKMapView *)mapView coordinateX:(double)coorX coordinateY:(double)coorY title:(NSString*)title subtitle:(NSString*)subtitle {
+  if (mapView != nil) {
+    CLLocationCoordinate2D coordinate2D;
+    iJobsMapAnnotation *mapAnnotation;
+    
+    if (coorX && coorY) {
+      coordinate2D.latitude = coorX;
+      coordinate2D.longitude = coorY;
+      mapAnnotation = [[iJobsMapAnnotation alloc] initWithCoords:coordinate2D title:_workItem.missionTitle subtitle:_workItem.missionLocation];
+      
+      [mapView addAnnotation:mapAnnotation];
+      
+      
+    }
+  }
+}
+
+- (CLLocationCoordinate2D)addressLocation:(NSString *)chineseAddress {
+  
+  NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", [chineseAddress stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+  
+//  NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString]];
+   
+  NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] 
+                                                      encoding:NSUTF8StringEncoding error:nil];
+  
+  NSArray *listItems = [locationString componentsSeparatedByString:@","];
+  double latitude = 0.0;
+  double longitude = 0.0;
+  if([listItems count] >= 4 && [[listItems objectAtIndex:0] isEqualToString:@"200"]) {
+    latitude = [[listItems objectAtIndex:2] doubleValue];
+    longitude = [[listItems objectAtIndex:3] doubleValue]; 
+  }
+  else {
+    //Show error  
+  }
+  
+  CLLocationCoordinate2D location;
+  location.latitude = latitude;
+  location.longitude = longitude;
+  
+  return location;
+  
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+  MKPinAnnotationView *newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annotation1"];
+	newAnnotation.pinColor = MKPinAnnotationColorGreen;
+	newAnnotation.animatesDrop = YES; 
+	//canShowCallout: to display the callout view by touch the pin
+	newAnnotation.canShowCallout=YES;
+	
+	UIButton *button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+	[button addTarget:self action:@selector(checkButtonTapped:event:) forControlEvents:UIControlEventTouchUpInside];
+	newAnnotation.rightCalloutAccessoryView=button;	
+  
+	return newAnnotation;
 }
 
 @end

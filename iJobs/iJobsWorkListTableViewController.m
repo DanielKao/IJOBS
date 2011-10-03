@@ -17,6 +17,7 @@
 - (void)loginWithUserEmail:(NSString *)userEmail userPassword:(NSString *)userPassword;
 - (void)logout;
 - (void)changeLoginButton:(NSNotification *)notification;
+- (void)cleanUpTableView;
 @end
 
 @implementation iJobsWorkListTableViewController
@@ -38,6 +39,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLoginButton:) name:kLoginNotification object:nil];
+  [self loginPrompt];
   
 }
 
@@ -53,10 +55,21 @@
 
 - (void)createModel {
 //  self.dataSource = [[iJobsWorkListDataSource alloc] initWithWorkListAPI];
-  self.dataSource = [[iJobsWorkListDataSource alloc] initWithMockupData];
+  BOOL isUserLogin = [[iJobsUserLoginManager sharedInstance] isUserLogin];
+  [[iJobsUserLoginManager sharedInstance] setDelegate:self];
+
+  if (isUserLogin) {
+    self.dataSource = [[iJobsWorkListDataSource alloc] initWithMockupData];
+  }
+  
 }
 
 #pragma - private method
+
+- (void)cleanUpTableView {
+  self.dataSource = [[[TTListDataSource alloc] init] autorelease];
+  [self refresh];
+}
 
 - (void)loginPrompt {
   DDAlertPrompt *loginPrompt = [[DDAlertPrompt alloc] initWithTitle:@"Sign in to iJobs" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitle:@"Sign In"]; 
@@ -76,6 +89,10 @@
 - (void)logout {
   [[iJobsUserLoginManager sharedInstance] logout];
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登入" style:UIBarButtonItemStyleBordered target:self action:@selector(loginPrompt)] autorelease];
+  [self cleanUpTableView];
+  
+  //TODO: clean workList after logout.
+
 }
 #pragma - DDAlertPrompt Delegate
 
@@ -96,5 +113,13 @@
     }
   }
 }
+
+#pragma - iJobsUserLoginManagerDelegate
+
+- (void)userDidFinishLogin:(TTURLRequest *)request {
+  [self createModel];
+}
+
+
 
 @end

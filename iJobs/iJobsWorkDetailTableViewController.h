@@ -10,14 +10,15 @@
 
 @class iJobsWorkListItem;
 @class iJobsPhotoReportViewController;
+@class iJobsGoogleMapViewController;
 @class MKMapView;
-
 @interface iJobsWorkDetailTableViewController : TTTableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
   iJobsWorkListItem *_workItem;
+  iJobsGoogleMapViewController *_gMapViewController;
   MKMapView *_mapView;
 }
 
 @property(nonatomic, retain) iJobsWorkListItem *workItem;
+@property(nonatomic, retain) iJobsGoogleMapViewController *gMapViewController;
 @property(nonatomic, retain) MKMapView *mapView;
-
 @end
