@@ -20,6 +20,8 @@
 @synthesize workerID = _workerID;
 @synthesize customerName = _customerName;
 @synthesize customerID = _customerID;
+@synthesize latitude, longitude;
+
 
 - (id)initWithTitle:(NSString *)title Detail:(NSString *)detail Location:(NSString *)location address:(NSString *)address date:(NSString *)date workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID {
   if ((self = [super init])) {

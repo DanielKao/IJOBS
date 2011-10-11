@@ -16,9 +16,11 @@
   iJobsWorkListItem *_workItem;
   iJobsGoogleMapViewController *_gMapViewController;
   MKMapView *_mapView;
+  UIWebView *_webView;
 }
 
 @property(nonatomic, retain) iJobsWorkListItem *workItem;
 @property(nonatomic, retain) iJobsGoogleMapViewController *gMapViewController;
 @property(nonatomic, retain) MKMapView *mapView;
+@property(nonatomic, retain) UIWebView *webView;
 @end

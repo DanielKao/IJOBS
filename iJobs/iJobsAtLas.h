@@ -25,3 +25,6 @@
 
 // notification name for login
 #define kLoginNotification @"loginNotification"
+
+// HTML for streetView
+#define STREET_VIEW_HTML @"<html><head><meta name='viewport' content='width=320,user-scalable=no'/><script src='http://maps.google.com/maps/api/js?sensor=false' type='text/javascript'></script></head><body onload=\"new google.maps.StreetViewPanorama(document.getElementById('p'),{position:new google.maps.LatLng(%f, %f)});\" style='padding:0px;margin:0px;'><div id='p' style='height:100%%;width:100%%;'></div></body></html>"

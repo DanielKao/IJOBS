@@ -16,12 +16,12 @@
 
 - (NSMutableArray *)arrayWithWorkDetailTableItem:(iJobsWorkListItem *)workItem;
 - (void)addSegmentedControll;
-- (void)addMapView;
+- (void)addMapView:(CGRect)frame;
 - (void)actionsForSegment:(id)sender;
 - (void)photoReport;
-
 - (void)createMapPoint:(MKMapView *)mapView coordinateX:(double)coorX coordinateY:(double)coorY title:(NSString*)title subtitle:(NSString*)subtitle;
 - (CLLocationCoordinate2D)addressLocation:(NSString *)chineseAddress;
+- (void)addStreetView:(CGRect)frame;
 
 @end
 
@@ -30,6 +30,7 @@
 @synthesize workItem = _workItem;
 @synthesize gMapViewController = _gMapViewController;
 @synthesize mapView = _mapView;
+@synthesize webView = _webView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,6 +58,8 @@
 {
   TT_RELEASE_SAFELY(_workItem);
   TT_RELEASE_SAFELY(_gMapViewController);
+  TT_RELEASE_SAFELY(_mapView);
+  TT_RELEASE_SAFELY(_webView);
   [super dealloc];
 }
 
@@ -80,15 +83,17 @@
   
   NSMutableArray *detailItems = [self arrayWithWorkDetailTableItem:self.workItem];
   self.dataSource = [TTListDataSource dataSourceWithItems:detailItems];
-  
   self.view.tag = 0;
-  [self addSegmentedControll];
-  [self addMapView];
-}
-
-- (void)addMapView {
   
   CGRect frame = CGRectMake(0, 0, 320, self.view.bounds.size.height - self.navigationController.navigationBar.height);
+  [self addSegmentedControll];
+  [self addMapView:frame];
+  [self addStreetView:frame];
+}
+
+- (void)addMapView:(CGRect)frame {
+  
+  
 
   _mapView = [[MKMapView alloc] initWithFrame:frame];
   _mapView.delegate = self;
@@ -97,8 +102,11 @@
   _mapView.tag = 1; 
     
   //using - (void)createMapPoint:(MKMapView *)mapView coordinateX:(double)coorX coordinateY:(double)coorY title:(NSString*)title subtitle:(NSString*)subtitle;
-  CLLocationCoordinate2D coordinate2D = [self addressLocation:@"台北市文山區指南路2段64號"];
+  CLLocationCoordinate2D coordinate2D = [self addressLocation:_workItem.missionLocationAddress];
   [self createMapPoint:_mapView coordinateX:coordinate2D.latitude coordinateY:coordinate2D.longitude title:_workItem.missionTitle subtitle:_workItem.missionLocation];
+  
+  _workItem.longitude = coordinate2D.longitude;
+  _workItem.latitude = coordinate2D.latitude;
   
   MKCoordinateRegion theRegion;
   //set region center
@@ -158,6 +166,18 @@
  */
 }
 
+- (void)addStreetView:(CGRect)frame {
+  _webView = [[UIWebView alloc] initWithFrame:frame];
+  
+  NSString *streetViewHTML = [NSString stringWithFormat:STREET_VIEW_HTML, _workItem.latitude, _workItem.longitude];
+  
+  TTDPRINT(@"streetViewHTML: %@", streetViewHTML);
+  
+  [_webView loadHTMLString:streetViewHTML baseURL:[NSURL URLWithString:@"http://www.apple.com"]];
+  [self.view addSubview:_webView];
+  [self.view sendSubviewToBack:_webView];
+}
+
 - (void)addSegmentedControll {
   
   CGFloat positionY = self.view.bounds.size.height - self.navigationController.navigationBar.height;
@@ -168,7 +188,7 @@
   segmentControl.segmentedControlStyle = UISegmentedControlStyleBar;
   [segmentControl setSelectedSegmentIndex:0];
   
-  UIToolbar *bottomBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, positionY, 320, self.navigationController.navigationBar.height)];  
+  UIToolbar *bottomBar = [[[UIToolbar alloc] initWithFrame:CGRectMake(0, positionY, 320, self.navigationController.navigationBar.height)] autorelease];  
   [bottomBar setItems:[NSArray arrayWithObject:[[UIBarButtonItem alloc] initWithCustomView:segmentControl]]];
   [self.view addSubview:bottomBar];
 }
@@ -211,10 +231,12 @@
   NSInteger selectedIndex = segmentedControl.selectedSegmentIndex;
   if (selectedIndex == 0) {
     [self.view sendSubviewToBack:_mapView];
+    [self.view sendSubviewToBack:_webView];
   }else if(selectedIndex == 1) {
     [self.view bringSubviewToFront:_mapView];
   }else {
     //this is for street view.
+    [self.view bringSubviewToFront:_webView];
   }
 }
 
