@@ -28,7 +28,7 @@
   [map from:kWorkDetailPath toViewController:[iJobsWorkDetailTableViewController class]];
   [map from:kCameraPath toModalViewController:[UIImagePickerController class]];
 //  if (![navigator restoreViewControllers]) {
-    [navigator openURLAction:[TTURLAction actionWithURLPath:kRootPath]];
+    [navigator openURLAction:[TTURLAction actionWithURLPath:kWorkDetailPath]];
   //}
   return YES;
 }

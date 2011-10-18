@@ -18,6 +18,7 @@
 - (void)addSegmentedControll;
 - (void)addMapView:(CGRect)frame;
 - (void)actionsForSegment:(id)sender;
+- (void)reporters;
 - (void)photoReport;
 - (void)createMapPoint:(MKMapView *)mapView coordinateX:(double)coorX coordinateY:(double)coorY title:(NSString*)title subtitle:(NSString*)subtitle;
 - (CLLocationCoordinate2D)addressLocation:(NSString *)chineseAddress;
@@ -79,7 +80,7 @@
 { 
   [super loadView];
   
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"影像回報" style:UIBarButtonItemStylePlain target:self action:@selector(photoReport)];
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"回報" style:UIBarButtonItemStylePlain target:self action:@selector(reporters)];
   
   NSMutableArray *detailItems = [self arrayWithWorkDetailTableItem:self.workItem];
   self.dataSource = [TTListDataSource dataSourceWithItems:detailItems];
@@ -240,6 +241,9 @@
   }
 }
 
+- (void)reporters {
+
+}
 - (void)photoReport {
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
   picker.delegate = self;
