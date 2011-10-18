@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface iJobsSignatureViewController : TTViewController {
-    
+
+  UIToolbar *toolBar;
+  CGPoint lastPoint;
+	UIImageView *drawImage;
+	BOOL mouseSwiped;	
+	int mouseMoved;
 }
 
 @end

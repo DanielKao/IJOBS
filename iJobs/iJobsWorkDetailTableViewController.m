@@ -12,6 +12,8 @@
 #import "MapKit/MapKit.h"
 #import "iJobsGoogleMapViewController.h"
 #import "iJobsMapAnnotation.h"
+#import "iJobsSignatureViewController.h"
+
 @interface iJobsWorkDetailTableViewController()
 
 - (NSMutableArray *)arrayWithWorkDetailTableItem:(iJobsWorkListItem *)workItem;
@@ -20,6 +22,7 @@
 - (void)actionsForSegment:(id)sender;
 - (void)reporters;
 - (void)photoReport;
+- (void)clientSignature;
 - (void)createMapPoint:(MKMapView *)mapView coordinateX:(double)coorX coordinateY:(double)coorY title:(NSString*)title subtitle:(NSString*)subtitle;
 - (CLLocationCoordinate2D)addressLocation:(NSString *)chineseAddress;
 - (void)addStreetView:(CGRect)frame;
@@ -29,9 +32,10 @@
 @implementation iJobsWorkDetailTableViewController
 
 @synthesize workItem = _workItem;
-@synthesize gMapViewController = _gMapViewController;
 @synthesize mapView = _mapView;
 @synthesize webView = _webView;
+@synthesize gMapViewController = _gMapViewController;
+@synthesize signatureViewController = _signatureViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,9 +62,10 @@
 - (void)dealloc
 {
   TT_RELEASE_SAFELY(_workItem);
-  TT_RELEASE_SAFELY(_gMapViewController);
   TT_RELEASE_SAFELY(_mapView);
   TT_RELEASE_SAFELY(_webView);
+  TT_RELEASE_SAFELY(_gMapViewController);
+  TT_RELEASE_SAFELY(_signatureViewController);
   [super dealloc];
 }
 
@@ -94,8 +99,6 @@
 
 - (void)addMapView:(CGRect)frame {
   
-  
-
   _mapView = [[MKMapView alloc] initWithFrame:frame];
   _mapView.delegate = self;
   _mapView.mapType = MKMapTypeStandard;
@@ -242,7 +245,10 @@
 }
 
 - (void)reporters {
-
+  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"回報方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"影像回報" otherButtonTitles:@"客戶簽章", nil];
+  
+  [actionSheet showInView:self.view];
+  TT_RELEASE_SAFELY(actionSheet);
 }
 - (void)photoReport {
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -255,6 +261,27 @@
 
   [self presentModalViewController:picker animated:YES];  
   [picker release];
+}
+
+- (void)clientSignature {
+  _signatureViewController = [[iJobsSignatureViewController alloc] init];
+  [self presentModalViewController:_signatureViewController animated:YES];
+  TT_RELEASE_SAFELY(_signatureViewController);
+}
+
+#pragma mark UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  switch (buttonIndex) {
+    case 0:
+      [self photoReport];
+      break;
+    case 1:
+      [self clientSignature];
+      break;
+    default:
+      break;
+  }
 }
 
 #pragma mark UIImagePickerController delegate methods

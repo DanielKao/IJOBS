@@ -8,6 +8,11 @@
 
 #import "iJobsSignatureViewController.h"
 
+@interface iJobsSignatureViewController()
+- (void)cancelButton;
+- (void)doneButton;
+- (void)cleanScreen;
+@end
 
 @implementation iJobsSignatureViewController
 
@@ -15,44 +20,137 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+      self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+      [self.view setBackgroundColor:[UIColor lightGrayColor]];
+      toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+      
+      UIBarButtonItem *cancelButton = [[[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelButton)] autorelease];
+      
+      UIBarButtonItem *doneButton = [[[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleBordered target:self action:@selector(doneButton)] autorelease];
+      
+      UIBarButtonItem *flexibleItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+      
+      [toolBar setItems:[NSArray arrayWithObjects:cancelButton, flexibleItem, doneButton, nil]];
+      
+      [self.view addSubview:toolBar];
+      
+      UIButton *redoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+      redoButton.frame = CGRectMake(20, 400, 80, 40);
+      [redoButton setTitle:@"清除" forState:UIControlStateNormal];
+      [redoButton addTarget:self action:@selector(cleanScreen) forControlEvents:UIControlEventTouchDown];
+      [self.view addSubview:redoButton];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [super dealloc];
+  TT_RELEASE_SAFELY(drawImage);
+  [super dealloc];
 }
 
 #pragma mark - View lifecycle
 
-/*
+
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-*/
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  drawImage = [[UIImageView alloc] initWithImage:nil];
+	drawImage.frame = self.view.frame;
+	[self.view addSubview:drawImage];
+	self.view.backgroundColor = [UIColor lightGrayColor];
+	mouseMoved = 0;  
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	
+	mouseSwiped = NO;
+	UITouch *touch = [touches anyObject];
+	
+	if ([touch tapCount] == 2) {
+		drawImage.image = nil;
+		return;
+	}
+  
+	lastPoint = [touch locationInView:self.view];
+	lastPoint.y -= 20;
+  
+}
+
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+	mouseSwiped = YES;
+	
+	UITouch *touch = [touches anyObject];	
+	CGPoint currentPoint = [touch locationInView:self.view];
+	currentPoint.y -= 20;
+	
+	
+	UIGraphicsBeginImageContext(self.view.frame.size);
+	[drawImage.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+	CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+	CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 5.0);
+	CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1.0, 0.0, 0.0, 1.0);
+	CGContextBeginPath(UIGraphicsGetCurrentContext());
+	CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+	CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
+	CGContextStrokePath(UIGraphicsGetCurrentContext());
+	drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	
+	lastPoint = currentPoint;
+  
+	mouseMoved++;
+	
+	if (mouseMoved == 10) {
+		mouseMoved = 0;
+	}
+  
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+	
+	UITouch *touch = [touches anyObject];
+	
+	if ([touch tapCount] == 2) {
+		drawImage.image = nil;
+		return;
+	}
+	
+	
+	if(!mouseSwiped) {
+		UIGraphicsBeginImageContext(self.view.frame.size);
+		[drawImage.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+		CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+		CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 5.0);
+		CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1.0, 0.0, 0.0, 1.0);
+		CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+		CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
+		CGContextStrokePath(UIGraphicsGetCurrentContext());
+		CGContextFlush(UIGraphicsGetCurrentContext());
+		drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+	}
+}
+
+#pragma mark private method
+
+- (void)cancelButton {
+  [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)doneButton {
+  [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)cleanScreen {
+  [drawImage removeFromSuperview];
+  TT_RELEASE_SAFELY(drawImage);
+  drawImage = [[UIImageView alloc] initWithImage:nil];
+  drawImage.frame = self.view.frame;
+  mouseMoved = 0;  
+  [self.view addSubview:drawImage];
 }
 
 @end
