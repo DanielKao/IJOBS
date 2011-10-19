@@ -30,9 +30,11 @@
       
       UIBarButtonItem *doneButton = [[[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleBordered target:self action:@selector(doneButton)] autorelease];
       
+      UIBarButtonItem *titleButton = [[UIBarButtonItem alloc] initWithTitle:@"客戶簽章" style:UIBarButtonItemStylePlain target:nil action:nil];
+
       UIBarButtonItem *flexibleItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
       
-      [toolBar setItems:[NSArray arrayWithObjects:cancelButton, flexibleItem, doneButton, nil]];
+      [toolBar setItems:[NSArray arrayWithObjects:cancelButton, flexibleItem, titleButton, flexibleItem, doneButton, nil]];
       
       [self.view addSubview:toolBar];
       
