@@ -7,14 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol iJobsSignatureViewDelegate;
 @interface iJobsSignatureViewController : TTViewController {
-
   UIToolbar *toolBar;
   CGPoint lastPoint;
 	UIImageView *drawImage;
 	BOOL mouseSwiped;	
 	int mouseMoved;
+  id<iJobsSignatureViewDelegate> _delegate;
 }
 
+@property(nonatomic, retain) id delegate;
+
+@end
+
+
+@protocol iJobsSignatureViewDelegate<NSObject>
+- (void)clientDidFinishSignature:(UIImageView *)signatureImageView;
 @end

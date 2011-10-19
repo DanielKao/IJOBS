@@ -245,7 +245,7 @@
 }
 
 - (void)reporters {
-  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"回報方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"影像回報" otherButtonTitles:@"客戶簽章", nil];
+  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"回報方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"影像回報", @"客戶簽章", nil];
   
   [actionSheet showInView:self.view];
   TT_RELEASE_SAFELY(actionSheet);
@@ -265,8 +265,8 @@
 
 - (void)clientSignature {
   _signatureViewController = [[iJobsSignatureViewController alloc] init];
+  _signatureViewController.delegate = self;
   [self presentModalViewController:_signatureViewController animated:YES];
-  TT_RELEASE_SAFELY(_signatureViewController);
 }
 
 #pragma mark UIActionSheetDelegate
@@ -282,6 +282,12 @@
     default:
       break;
   }
+}
+
+#pragma mark iJobsSignatureViewDelegate
+
+- (void)clientDidFinishSignature:(UIImageView *)signatureImageView {
+  [self.workItem setClientSignatureImageView:signatureImageView];
 }
 
 #pragma mark UIImagePickerController delegate methods

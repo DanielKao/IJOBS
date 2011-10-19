@@ -16,6 +16,8 @@
 
 @implementation iJobsSignatureViewController
 
+@synthesize delegate = _delegate;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -45,7 +47,9 @@
 
 - (void)dealloc
 {
+  TT_RELEASE_SAFELY(toolBar);
   TT_RELEASE_SAFELY(drawImage);
+  TT_RELEASE_SAFELY(_delegate);
   [super dealloc];
 }
 
@@ -141,6 +145,10 @@
 }
 
 - (void)doneButton {
+  if ([_delegate respondsToSelector:@selector(clientDidFinishSignature:)]) {
+    TTDPRINT(@"delegate respondsToSelector:clientDidFinishSignature");
+    [_delegate clientDidFinishSignature:drawImage];
+  }
   [self dismissModalViewControllerAnimated:YES];
 }
 

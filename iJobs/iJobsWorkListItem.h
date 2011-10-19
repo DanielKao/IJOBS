@@ -20,6 +20,7 @@
   NSString *_workerID;
   NSString *_customerName;
   NSString *_customerID;
+  UIImageView *_clientSignatureImageView;
   double longitude;
   double latitude;
 }
@@ -33,8 +34,11 @@
 @property(nonatomic, retain) NSString *workerID;
 @property(nonatomic, retain) NSString *customerName;
 @property(nonatomic, retain) NSString *customerID;
+@property(nonatomic, retain) UIImageView *clientSignatureImageView;
 @property(nonatomic) double longitude;
 @property(nonatomic) double latitude;
 
 - (id)initWithTitle:(NSString *)title Detail:(NSString *)detail Location:(NSString *)location address:(NSString *)address date:(NSString *)date workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID;
+
+- (void)setClientSignatureImageView:(UIImageView *)signatureImageView;
 @end

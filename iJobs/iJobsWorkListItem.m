@@ -20,6 +20,7 @@
 @synthesize workerID = _workerID;
 @synthesize customerName = _customerName;
 @synthesize customerID = _customerID;
+@synthesize clientSignatureImageView = _clientSignatureImageView;
 @synthesize latitude, longitude;
 
 
@@ -38,6 +39,13 @@
   return self;
 }
 
+- (void)setClientSignatureImageView:(UIImageView *)signatureImageView {
+  if (signatureImageView != nil) {
+    _clientSignatureImageView = [signatureImageView retain];
+    TTDPRINT(@"setClientSignatureImageView");
+  }
+}
+
 - (void)dealloc
 {
   TT_RELEASE_SAFELY(_missionTitle);
@@ -49,6 +57,7 @@
   TT_RELEASE_SAFELY(_workerName);
   TT_RELEASE_SAFELY(_customerID);
   TT_RELEASE_SAFELY(_customerName);
+  TT_RELEASE_SAFELY(_clientSignatureImageView);
     [super dealloc];
 }
 @end

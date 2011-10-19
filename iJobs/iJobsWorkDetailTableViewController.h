@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "iJobsSignatureViewController.h"
 
 @class iJobsWorkListItem;
 @class iJobsPhotoReportViewController;
 @class iJobsGoogleMapViewController;
-@class MKMapView;
-@class iJobsSignatureViewController;
-@interface iJobsWorkDetailTableViewController : TTTableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate> {
+
+@interface iJobsWorkDetailTableViewController : TTTableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, iJobsSignatureViewDelegate> {
   iJobsWorkListItem *_workItem;
   iJobsGoogleMapViewController *_gMapViewController;
   iJobsSignatureViewController *_signatureViewController;
