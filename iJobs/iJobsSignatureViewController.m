@@ -22,7 +22,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-      self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+      self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 44, 320, 436)];
       [self.view setBackgroundColor:[UIColor lightGrayColor]];
       toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
       
@@ -74,14 +74,15 @@
 	mouseSwiped = NO;
 	UITouch *touch = [touches anyObject];
 	
+  /*
 	if ([touch tapCount] == 2) {
 		drawImage.image = nil;
 		return;
 	}
+   */
   
 	lastPoint = [touch locationInView:self.view];
 	lastPoint.y -= 20;
-  
 }
 
 
@@ -97,7 +98,8 @@
 	[drawImage.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 	CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
 	CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 5.0);
-	CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1.0, 0.0, 0.0, 1.0);
+//	CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1.0, 0.0, 0.0, 1.0);
+  CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [[UIColor blackColor] CGColor]);
 	CGContextBeginPath(UIGraphicsGetCurrentContext());
 	CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
 	CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
@@ -130,7 +132,8 @@
 		[drawImage.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 		CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
 		CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 5.0);
-		CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1.0, 0.0, 0.0, 1.0);
+//		CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1.0, 0.0, 0.0, 1.0);
+      CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [[UIColor blackColor] CGColor]);
 		CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
 		CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
 		CGContextStrokePath(UIGraphicsGetCurrentContext());
@@ -155,12 +158,14 @@
 }
 
 - (void)cleanScreen {
+  /*
   [drawImage removeFromSuperview];
   TT_RELEASE_SAFELY(drawImage);
   drawImage = [[UIImageView alloc] initWithImage:nil];
   drawImage.frame = self.view.frame;
   mouseMoved = 0;  
-  [self.view addSubview:drawImage];
+  [self.view addSubview:drawImage];*/
+  drawImage.image = nil;
 }
 
 @end
