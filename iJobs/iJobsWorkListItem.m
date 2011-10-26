@@ -22,13 +22,14 @@
 @dynamic missionDate;
 @dynamic missionLocationAddress;
 @dynamic missionLocation;
-
-- (id)initWithTitle:(NSString *)missionTitle detail:(NSString *)missionDetail location:(NSString *)missionLocation locationAddress:(NSString *)missionLocationAddreee date:(NSString *)dateString workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID {
-
-}
-
-- (void)setclientSignatureImageData:(UIImage *)signatureImage {
-
-}
+@dynamic isWorkDone;
+//
+//- (id)initWithTitle:(NSString *)missionTitle detail:(NSString *)missionDetail location:(NSString *)missionLocation locationAddress:(NSString *)missionLocationAddreee date:(NSString *)dateString workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID {
+//
+//}
+//
+//- (void)setclientSignatureImageData:(UIImage *)signatureImage {
+//
+//}
 
 @end

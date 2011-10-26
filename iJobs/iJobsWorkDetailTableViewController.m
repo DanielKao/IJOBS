@@ -109,8 +109,8 @@
   CLLocationCoordinate2D coordinate2D = [self addressLocation:_workItem.missionLocationAddress];
   [self createMapPoint:_mapView coordinateX:coordinate2D.latitude coordinateY:coordinate2D.longitude title:_workItem.missionTitle subtitle:_workItem.missionLocation];
   
-  _workItem.longitude = coordinate2D.longitude;
-  _workItem.latitude = coordinate2D.latitude;
+  _workItem.longitude = [NSNumber numberWithDouble:coordinate2D.longitude];
+  _workItem.latitude = [NSNumber numberWithDouble:coordinate2D.latitude];
   
   MKCoordinateRegion theRegion;
   //set region center
@@ -287,7 +287,8 @@
 #pragma mark iJobsSignatureViewDelegate
 
 - (void)clientDidFinishSignature:(UIImageView *)signatureImageView {
-  [self.workItem setClientSignatureImageView:signatureImageView];
+//  [self.workItem setClientSignatureImageView:signatureImageView];
+// This method should be rewrite.
 }
 
 #pragma mark UIImagePickerController delegate methods
