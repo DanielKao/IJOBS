@@ -10,19 +10,19 @@
 #import <MapKit/MapKit.h>
 #import "iJobsSignatureViewController.h"
 
-@class iJobsWorkListItem;
+@class IJobsWorkListItem;
 @class iJobsPhotoReportViewController;
 @class iJobsGoogleMapViewController;
 
 @interface iJobsWorkDetailTableViewController : TTTableViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, MKMapViewDelegate, UIActionSheetDelegate, iJobsSignatureViewDelegate> {
-  iJobsWorkListItem *_workItem;
+  IJobsWorkListItem *_workItem;
   iJobsGoogleMapViewController *_gMapViewController;
   iJobsSignatureViewController *_signatureViewController;
   MKMapView *_mapView;
   UIWebView *_webView;
 }
 
-@property(nonatomic, retain) iJobsWorkListItem *workItem;
+@property(nonatomic, retain) IJobsWorkListItem *workItem;
 @property(nonatomic, retain) iJobsGoogleMapViewController *gMapViewController;
 @property(nonatomic, retain) iJobsSignatureViewController *signatureViewController;
 @property(nonatomic, retain) MKMapView *mapView;

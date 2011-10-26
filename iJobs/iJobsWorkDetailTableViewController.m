@@ -7,7 +7,7 @@
 //
 
 #import "iJobsWorkDetailTableViewController.h"
-#import "iJobsWorkListItem.h"
+#import "IJobsWorkListItem.h"
 #import "iJobsPhotoReportViewController.h"
 #import "MapKit/MapKit.h"
 #import "iJobsGoogleMapViewController.h"
@@ -16,7 +16,7 @@
 
 @interface iJobsWorkDetailTableViewController()
 
-- (NSMutableArray *)arrayWithWorkDetailTableItem:(iJobsWorkListItem *)workItem;
+- (NSMutableArray *)arrayWithWorkDetailTableItem:(IJobsWorkListItem *)workItem;
 - (void)addSegmentedControll;
 - (void)addMapView:(CGRect)frame;
 - (void)actionsForSegment:(id)sender;
@@ -205,7 +205,7 @@
 }
 
 #pragma mark - private method
-- (NSMutableArray *)arrayWithWorkDetailTableItem:(iJobsWorkListItem *)workItem {
+- (NSMutableArray *)arrayWithWorkDetailTableItem:(IJobsWorkListItem *)workItem {
   /*NSString *_missionTitle;
    NSString *_missionDetail;
    NSString *_missionLocationAddress;

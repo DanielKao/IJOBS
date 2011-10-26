@@ -132,8 +132,7 @@
 		[drawImage.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 		CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
 		CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 5.0);
-//		CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 1.0, 0.0, 0.0, 1.0);
-      CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [[UIColor blackColor] CGColor]);
+    CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [[UIColor blackColor] CGColor]);
 		CGContextMoveToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
 		CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), lastPoint.x, lastPoint.y);
 		CGContextStrokePath(UIGraphicsGetCurrentContext());
@@ -166,6 +165,7 @@
   mouseMoved = 0;  
   [self.view addSubview:drawImage];*/
   drawImage.image = nil;
+  mouseMoved = 0;
 }
 
 @end

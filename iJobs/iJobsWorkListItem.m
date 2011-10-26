@@ -1,63 +1,34 @@
 //
-//  iJobsWorkListItem.m
+//  IJobsWorkListItem.m
 //  iJobs
 //
-//  Created by Daniel Kao on 2011/9/21.
-//  Copyright 2011年 NCCUCS. All rights reserved.
+//  Created by Daniel Kao on 2011/10/26.
+//  Copyright (c) 2011年 NCCUCS. All rights reserved.
 //
 
-#import "iJobsWorkListItem.h"
+#import "IJobsWorkListItem.h"
 
 
-@implementation iJobsWorkListItem
+@implementation IJobsWorkListItem
+@dynamic missionTitle;
+@dynamic missionDetail;
+@dynamic latitude;
+@dynamic longitude;
+@dynamic clientSignatureImageData;
+@dynamic customerID;
+@dynamic customerName;
+@dynamic workerID;
+@dynamic workerName;
+@dynamic missionDate;
+@dynamic missionLocationAddress;
+@dynamic missionLocation;
 
-@synthesize missionTitle = _missionTitle;
-@synthesize missionDetail = _missionDetail;
-@synthesize missionLocation = _missionLocation;
-@synthesize missionLocationAddress = _missionLocationAddress;
-@synthesize missionDate = _missionDate;
-@synthesize workerName = _workerName;
-@synthesize workerID = _workerID;
-@synthesize customerName = _customerName;
-@synthesize customerID = _customerID;
-@synthesize clientSignatureImageView = _clientSignatureImageView;
-@synthesize latitude, longitude;
+- (id)initWithTitle:(NSString *)missionTitle detail:(NSString *)missionDetail location:(NSString *)missionLocation locationAddress:(NSString *)missionLocationAddreee date:(NSString *)dateString workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID {
 
-
-- (id)initWithTitle:(NSString *)title Detail:(NSString *)detail Location:(NSString *)location address:(NSString *)address date:(NSString *)date workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID {
-  if ((self = [super init])) {
-    self.missionTitle = title;
-    self.missionDetail = detail;
-    self.missionLocationAddress = address;
-    self.missionLocation = location;
-    self.missionDate = date;
-    self.workerName = workerName;
-    self.workerID = workerID;
-    self.customerName = customerName;
-    self.customerID = customerID;
-  }
-  return self;
 }
 
-- (void)setClientSignatureImageView:(UIImageView *)signatureImageView {
-  if (signatureImageView != nil) {
-    _clientSignatureImageView = [signatureImageView retain];
-    TTDPRINT(@"setClientSignatureImageView");
-  }
+- (void)setclientSignatureImageData:(UIImage *)signatureImage {
+
 }
 
-- (void)dealloc
-{
-  TT_RELEASE_SAFELY(_missionTitle);
-  TT_RELEASE_SAFELY(_missionDetail);
-  TT_RELEASE_SAFELY(_missionDate);
-  TT_RELEASE_SAFELY(_missionLocation);
-  TT_RELEASE_SAFELY(_missionLocationAddress);
-  TT_RELEASE_SAFELY(_workerID);
-  TT_RELEASE_SAFELY(_workerName);
-  TT_RELEASE_SAFELY(_customerID);
-  TT_RELEASE_SAFELY(_customerName);
-  TT_RELEASE_SAFELY(_clientSignatureImageView);
-    [super dealloc];
-}
 @end

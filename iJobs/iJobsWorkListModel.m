@@ -34,7 +34,7 @@
   NSArry *items = [itemsDictionary objectForKey:@"待填"];
   //items array中，每一個element均代表一筆record , 每個record又是一個dictionary
   for(NSDictionary *item in items) {
-    //解析items中的每一筆record，並將每筆資料存成iJobsWorkListItem, 最後加入_workListItems.
+    //解析items中的每一筆record，並將每筆資料存成IJobsWorkListItem, 最後加入_workListItems.
     //iJobWorkListItem的property未必與record的attribute相同，待API完成後確認.
    } 
   */
