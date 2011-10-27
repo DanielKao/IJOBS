@@ -8,7 +8,6 @@
 
 #import "iJobsWorkListModel.h"
 
-
 @implementation iJobsWorkListModel
 
 @synthesize workListItems = _workListItems;

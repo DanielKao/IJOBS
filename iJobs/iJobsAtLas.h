@@ -19,9 +19,9 @@
 #define kParameterWorkItem @"parameterWorkItem"
 
 // iJobs APP API
-#define kLoginAPI @"http://ijobstestver.heroku.com/iphone-signin"
-#define kLogoutAPI @"http://ijobstestver.heroku.com/signout"
-#define kWorkListAPI @"tw.google.com"
+#define kLoginAPI @"http://fieldworker.heroku.com/iphone-signin"
+#define kLogoutAPI @"http://fieldworker.heroku.com/signout"
+#define kWorkListAPI @"http://fieldworker.heroku.com/microposts.json"
 
 // notification name for login
 #define kLoginNotification @"loginNotification"

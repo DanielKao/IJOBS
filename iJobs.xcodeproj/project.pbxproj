@@ -34,7 +34,6 @@
 		E93E09A91457E19B00FEB617 /* iJobsCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E93E09A71457E19B00FEB617 /* iJobsCoreDataModel.xcdatamodeld */; };
 		E93E09AC1457E43700FEB617 /* IJobsWorkListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E93E09AB1457E43700FEB617 /* IJobsWorkListItem.m */; };
 		E93E09AE1457EF4900FEB617 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E93E09AD1457EF4900FEB617 /* CoreData.framework */; };
-		E93E09B01457EF6700FEB617 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E93E09AF1457EF6700FEB617 /* CoreData.framework */; };
 		E9B6D8821429E17D00E36419 /* iJobsSummaryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B6D8811429E17D00E36419 /* iJobsSummaryTableViewController.m */; };
 		E9B6D9031429E60D00E36419 /* iJobsWorkListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B6D9021429E60D00E36419 /* iJobsWorkListTableViewController.m */; };
 		E9B6D9061429E68900E36419 /* iJobsWorkListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B6D9051429E68900E36419 /* iJobsWorkListModel.m */; };
@@ -268,7 +267,6 @@
 		E93E09AA1457E43700FEB617 /* IJobsWorkListItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJobsWorkListItem.h; sourceTree = "<group>"; };
 		E93E09AB1457E43700FEB617 /* IJobsWorkListItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJobsWorkListItem.m; sourceTree = "<group>"; };
 		E93E09AD1457EF4900FEB617 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		E93E09AF1457EF6700FEB617 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E9B6D8801429E17D00E36419 /* iJobsSummaryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iJobsSummaryTableViewController.h; sourceTree = "<group>"; };
 		E9B6D8811429E17D00E36419 /* iJobsSummaryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iJobsSummaryTableViewController.m; sourceTree = "<group>"; };
 		E9B6D9011429E60D00E36419 /* iJobsWorkListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iJobsWorkListTableViewController.h; sourceTree = "<group>"; };
@@ -324,7 +322,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E93E09B01457EF6700FEB617 /* CoreData.framework in Frameworks */,
 				E910FD6A1429D3FB0034AEBB /* UIKit.framework in Frameworks */,
 				E910FD6B1429D3FB0034AEBB /* Foundation.framework in Frameworks */,
 				E910FD6C1429D3FB0034AEBB /* CoreGraphics.framework in Frameworks */,
@@ -410,8 +407,6 @@
 		E910FD401429D3FA0034AEBB = {
 			isa = PBXGroup;
 			children = (
-				E93E09AF1457EF6700FEB617 /* CoreData.framework */,
-				E93E09AD1457EF4900FEB617 /* CoreData.framework */,
 				E910FD551429D3FB0034AEBB /* iJobs */,
 				E910FD6F1429D3FB0034AEBB /* iJobsTests */,
 				E910FD4E1429D3FA0034AEBB /* Frameworks */,
@@ -431,6 +426,7 @@
 		E910FD4E1429D3FA0034AEBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E93E09AD1457EF4900FEB617 /* CoreData.framework */,
 				E90BD1B81436091F00400F76 /* MapKit.framework */,
 				3206A0F794A6D7A3F259DBF0 /* extThree20JSON.xcodeproj */,
 				3201088596B4756681693700 /* Three20UICommon.xcodeproj */,
