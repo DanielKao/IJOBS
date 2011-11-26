@@ -32,6 +32,7 @@
       self.variableHeightRows = YES;
       //_tableViewDelegate = [[iJobsWorkListTableViewDelegate alloc] initWithController:self];
       self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登入" style:UIBarButtonItemStyleBordered target:self action:@selector(loginPrompt)] autorelease];
+      self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reload)] autorelease];
     }
     return self;
 }
@@ -59,7 +60,7 @@
   [[iJobsUserLoginManager sharedInstance] setDelegate:self];
 
   if (isUserLogin) {
-    self.dataSource = [[iJobsWorkListDataSource alloc] initWithMockupData];
+    self.dataSource = [[iJobsWorkListDataSource alloc] initWithWorkListAPI];
   }
   
 }
