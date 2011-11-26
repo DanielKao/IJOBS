@@ -10,19 +10,19 @@
 
 
 @implementation IJobsWorkListItem
-@dynamic missionTitle;
-@dynamic missionDetail;
-@dynamic latitude;
-@dynamic longitude;
-@dynamic clientSignatureImageData;
-@dynamic customerID;
-@dynamic customerName;
-@dynamic workerID;
-@dynamic workerName;
-@dynamic missionDate;
-@dynamic missionLocationAddress;
-@dynamic missionLocation;
-@dynamic isWorkDone;
+@synthesize missionTitle;
+@synthesize missionDetail;
+@synthesize latitude;
+@synthesize longitude;
+@synthesize clientSignatureImageData;
+@synthesize customerID;
+@synthesize customerName;
+@synthesize workerID;
+@synthesize workerName;
+@synthesize missionDate;
+@synthesize missionLocationAddress;
+@synthesize missionLocation;
+@synthesize isWorkDone;
 //
 //- (id)initWithTitle:(NSString *)missionTitle detail:(NSString *)missionDetail location:(NSString *)missionLocation locationAddress:(NSString *)missionLocationAddreee date:(NSString *)dateString workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID {
 //

@@ -109,6 +109,8 @@
   CLLocationCoordinate2D coordinate2D = [self addressLocation:_workItem.missionLocationAddress];
   [self createMapPoint:_mapView coordinateX:coordinate2D.latitude coordinateY:coordinate2D.longitude title:_workItem.missionTitle subtitle:_workItem.missionLocation];
   
+  TTDPRINT(@"longitude: %f", coordinate2D.longitude);
+  TTDPRINT(@"latitude: %f", coordinate2D.latitude);
   _workItem.longitude = [NSNumber numberWithDouble:coordinate2D.longitude];
   _workItem.latitude = [NSNumber numberWithDouble:coordinate2D.latitude];
   
@@ -173,7 +175,7 @@
 - (void)addStreetView:(CGRect)frame {
   _webView = [[UIWebView alloc] initWithFrame:frame];
   
-  NSString *streetViewHTML = [NSString stringWithFormat:STREET_VIEW_HTML, _workItem.latitude, _workItem.longitude];
+  NSString *streetViewHTML = [NSString stringWithFormat:STREET_VIEW_HTML, [_workItem.latitude doubleValue], [_workItem.longitude doubleValue]];
   
   TTDPRINT(@"streetViewHTML: %@", streetViewHTML);
   
@@ -316,7 +318,7 @@
       coordinate2D.latitude = coorX;
       coordinate2D.longitude = coorY;
       mapAnnotation = [[iJobsMapAnnotation alloc] initWithCoords:coordinate2D title:_workItem.missionTitle subtitle:_workItem.missionLocation];
-      
+
       [mapView addAnnotation:mapAnnotation];
       
       
@@ -327,7 +329,7 @@
 - (CLLocationCoordinate2D)addressLocation:(NSString *)chineseAddress {
   
   NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", [chineseAddress stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-  
+  TTDPRINT(@"addressLocation: %@", urlString);
 //  NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString]];
    
   NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] 
@@ -361,7 +363,7 @@
 	
 	UIButton *button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 	[button addTarget:self action:@selector(checkButtonTapped:event:) forControlEvents:UIControlEventTouchUpInside];
-	newAnnotation.rightCalloutAccessoryView=button;	
+	newAnnotation.rightCalloutAccessoryView=nil;	
   
 	return newAnnotation;
 }

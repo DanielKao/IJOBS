@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 
-@interface IJobsWorkListItem : NSManagedObject {
+
+@interface IJobsWorkListItem : NSObject {
 @private
 }
 @property (nonatomic, retain) NSString * missionTitle;
@@ -24,7 +24,7 @@
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSData * clientSignatureImageData;
-@property (nonatomic) Boolean isWorkDone;
+@property (nonatomic) BOOL isWorkDone;
 
 /*initWithTitle:@"會見政大老闆" Detail:@"洽談政大資訊教室電腦裝配外包事宜" Location:@"國立政治大學" address:@"台北市文山區指南路2段64號" date:@"2012/10/03 15:00" workerName:@"王小華" workerID:@"w11111" customerName:@"吳濕華" customerID:@"c11111"*/
 /*

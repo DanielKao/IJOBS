@@ -20,7 +20,7 @@
     _coordinate = coords;
     self.title = title;
     self.subtitle = subtitle;
-  }
+    }
   return self;
 }
 

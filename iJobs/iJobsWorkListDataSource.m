@@ -52,12 +52,12 @@
 /*
  *  Ask for model
  */
-/*
+
 - (id<TTModel>)model {
   // TTDPRINT(@"Start");
   return _workListModel;
 }
-*/
+
 
 - (void)tableViewDidLoadModel:(UITableView*)tableView {  
 
@@ -75,7 +75,7 @@
   NSArray *temp = [self.workListModel.workListItems retain];
   
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-  [dateFormatter setDateFormat:@"yyyy/MM/dd HH:mm"];
+  [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
   
   for (IJobsWorkListItem *item in temp) {
     [array addObject:

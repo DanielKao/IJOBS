@@ -7,7 +7,7 @@
 //
 
 #import "iJobsWorkListModel.h"
-
+#import "IJobsWorkListItem.h"
 @implementation iJobsWorkListModel
 
 @synthesize workListItems = _workListItems;
@@ -27,16 +27,42 @@
 
 - (void)requestDidFinishLoad:(TTURLRequest *)request {
   TTDPRINT(@"requestDidFinishLoad");
-  /*
   TTURLJSONResponse *response = request.response;
-  NSDictionary *itemsDictionary = response.rootObject;
-  NSArry *items = [itemsDictionary objectForKey:@"待填"];
-  //items array中，每一個element均代表一筆record , 每個record又是一個dictionary
-  for(NSDictionary *item in items) {
-    //解析items中的每一筆record，並將每筆資料存成IJobsWorkListItem, 最後加入_workListItems.
-    //iJobWorkListItem的property未必與record的attribute相同，待API完成後確認.
+  NSArray *itemsDictionary = response.rootObject;
+  NSMutableArray *array = [NSMutableArray array];
+  for(NSDictionary *item in itemsDictionary) {
+    item = [item objectForKey:@"micropost"];
+    /*
+    TTDPRINT(@"item :%@", item);
+    TTDPRINT(@"missionTitle: %@", [item objectForKey:@"missionTitle"]);
+    TTDPRINT(@"missionDetail: %@", [item objectForKey:@"missionDetail"]);
+    TTDPRINT(@"missionDate: %@", [item objectForKey:@"missionDate"]);
+    TTDPRINT(@"missionLocation: %@", [item objectForKey:@"missionLocation"]);
+    TTDPRINT(@"missionLocationAddress: %@", [item objectForKey:@"missionLocationAddress"]);
+    TTDPRINT(@"customerID: %@", [item objectForKey:@"customerID"]);
+    TTDPRINT(@"customerName: %@", [item objectForKey:@"customerName"]);
+    TTDPRINT(@"workerID: %@", [item objectForKey:@"user_id"]);
+    TTDPRINT(@"mission_complete: %@", [item objectForKey:@"mission_complete"]);
+    */
+    IJobsWorkListItem *workItem = [[IJobsWorkListItem alloc] init];
+    [workItem setMissionTitle:[item objectForKey:@"missionTitle"]];
+    [workItem setMissionDetail:[item objectForKey:@"missionDetail"]];
+    [workItem setCustomerID:[item objectForKey:@"customerID"]];
+    [workItem setCustomerName:[item objectForKey:@"customerName"]];
+    [workItem setWorkerID:[item objectForKey:@"user_id"]];
+    [workItem setWorkerName:[item objectForKey:@"workerName"]];
+    [workItem setMissionDate:[item objectForKey:@"missionDate"]];
+    [workItem setMissionLocationAddress:[item objectForKey:@"missionLocationAddress"]];
+    [workItem setMissionLocation:[item objectForKey:@"missionLocation"]];
+    if ([item objectForKey:@"mission_complete"] == 0) {
+      [workItem setIsWorkDone:NO];
+    } else {
+      [workItem setIsWorkDone:YES];
+    }
+    [array addObject:workItem];
+    TT_RELEASE_SAFELY(workItem);
    } 
-  */
+  self.workListItems = [NSMutableArray arrayWithArray:array];
   [super requestDidFinishLoad:request];
 }
 
