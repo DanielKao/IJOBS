@@ -290,7 +290,15 @@
 
 - (void)clientDidFinishSignature:(UIImageView *)signatureImageView {
 //  [self.workItem setClientSignatureImageView:signatureImageView];
-// This method should be rewrite.
+  TTURLRequest *request = [TTURLRequest requestWithURL:kUploadSignatureImageAPI delegate:self];
+  request.httpMethod = @"POST";
+  
+  [request.parameters setObject:_workItem.workID forKey:@"workID"];
+  [request addFile:UIImagePNGRepresentation(signatureImageView.image) mimeType:@"image/png" fileName:@"signatureImage.png"];
+  request.cachePolicy = TTURLRequestCachePolicyNone;
+  request.response = [[[TTURLJSONResponse alloc] init] autorelease];
+  
+  [request send];
 }
 
 #pragma mark UIImagePickerController delegate methods

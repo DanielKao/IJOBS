@@ -23,6 +23,7 @@
 @synthesize missionLocationAddress;
 @synthesize missionLocation;
 @synthesize isWorkDone;
+@synthesize workID;
 //
 //- (id)initWithTitle:(NSString *)missionTitle detail:(NSString *)missionDetail location:(NSString *)missionLocation locationAddress:(NSString *)missionLocationAddreee date:(NSString *)dateString workerName:(NSString *)workerName workerID:(NSString *)workerID customerName:(NSString *)customerName customerID:(NSString *)customerID {
 //

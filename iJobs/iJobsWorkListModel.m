@@ -43,6 +43,7 @@
     TTDPRINT(@"customerName: %@", [item objectForKey:@"customerName"]);
     TTDPRINT(@"workerID: %@", [item objectForKey:@"user_id"]);
     TTDPRINT(@"mission_complete: %@", [item objectForKey:@"mission_complete"]);
+    TTDPRINT(@"workID: %@", [[item objectForKey:@"id"] class]);
     
     IJobsWorkListItem *workItem = [[IJobsWorkListItem alloc] init];
     [workItem setMissionTitle:[item objectForKey:@"missionTitle"]];
@@ -51,7 +52,8 @@
     [workItem setCustomerName:[item objectForKey:@"customerName"]];
     [workItem setWorkerID:[item objectForKey:@"user_id"]];
     [workItem setWorkerName:[item objectForKey:@"workerName"]];
-    
+    [workItem setWorkID:[[item objectForKey:@"id"] stringValue]];
+    TTDPRINT(@"workID: %@", workItem.workID);
     NSMutableString *workingDate = [NSMutableString stringWithString:[item objectForKey:@"missionDate"]];
     [workingDate replaceOccurrencesOfString:@"-" withString:@"/" options:2 range:NSMakeRange(0, [workingDate length])];
     [workingDate replaceOccurrencesOfString:@"T" withString:@" " options:2 range:NSMakeRange(0, [workingDate length])];

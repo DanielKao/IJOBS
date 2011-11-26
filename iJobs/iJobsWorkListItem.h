@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSString * missionDate;
 @property (nonatomic, retain) NSString * missionLocationAddress;
 @property (nonatomic, retain) NSString * missionLocation;
+@property (nonatomic, retain) NSString * workID;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSData * clientSignatureImageData;
