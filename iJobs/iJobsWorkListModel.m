@@ -32,7 +32,7 @@
   NSMutableArray *array = [NSMutableArray array];
   for(NSDictionary *item in itemsDictionary) {
     item = [item objectForKey:@"micropost"];
-    /*
+    
     TTDPRINT(@"item :%@", item);
     TTDPRINT(@"missionTitle: %@", [item objectForKey:@"missionTitle"]);
     TTDPRINT(@"missionDetail: %@", [item objectForKey:@"missionDetail"]);
@@ -43,7 +43,7 @@
     TTDPRINT(@"customerName: %@", [item objectForKey:@"customerName"]);
     TTDPRINT(@"workerID: %@", [item objectForKey:@"user_id"]);
     TTDPRINT(@"mission_complete: %@", [item objectForKey:@"mission_complete"]);
-    */
+    
     IJobsWorkListItem *workItem = [[IJobsWorkListItem alloc] init];
     [workItem setMissionTitle:[item objectForKey:@"missionTitle"]];
     [workItem setMissionDetail:[item objectForKey:@"missionDetail"]];
@@ -51,7 +51,14 @@
     [workItem setCustomerName:[item objectForKey:@"customerName"]];
     [workItem setWorkerID:[item objectForKey:@"user_id"]];
     [workItem setWorkerName:[item objectForKey:@"workerName"]];
-    [workItem setMissionDate:[item objectForKey:@"missionDate"]];
+    
+    NSMutableString *workingDate = [NSMutableString stringWithString:[item objectForKey:@"missionDate"]];
+    [workingDate replaceOccurrencesOfString:@"-" withString:@"/" options:2 range:NSMakeRange(0, [workingDate length])];
+    [workingDate replaceOccurrencesOfString:@"T" withString:@" " options:2 range:NSMakeRange(0, [workingDate length])];
+    [workingDate replaceOccurrencesOfString:@":00Z" withString:@"" options:2 range:NSMakeRange(0, [workingDate length])];
+
+    [workItem setMissionDate:workingDate];
+    
     [workItem setMissionLocationAddress:[item objectForKey:@"missionLocationAddress"]];
     [workItem setMissionLocation:[item objectForKey:@"missionLocation"]];
     if ([item objectForKey:@"mission_complete"] == 0) {

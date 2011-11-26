@@ -75,9 +75,10 @@
   NSArray *temp = [self.workListModel.workListItems retain];
   
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-  [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+  [dateFormatter setDateFormat:@"yyyy/MM/dd HH:mm"];
   
   for (IJobsWorkListItem *item in temp) {
+    
     [array addObject:
      [TTTableMessageItem itemWithTitle:[NSString stringWithFormat:@"任務:%@", item.missionTitle] 
                                caption:[NSString stringWithFormat:@"客戶名稱:%@", item.customerName] 
