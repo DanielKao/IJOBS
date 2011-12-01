@@ -13,7 +13,7 @@
 - (void)initializeBottomToolbar;
 - (void)initializeImageView;
 - (void)cancelPhotoReportViewController;
-- (void)uploadImage:(NSString *)postedText;
+- (void)uploadImage;
 @end
 
 
@@ -21,7 +21,10 @@
 
 @synthesize bottomToolbar = _bottomToolbar;
 @synthesize picker = _picker;
-@synthesize image = _image;
+@synthesize situationImage = _situationImage;
+@synthesize workID = _workID;
+@synthesize situationDetail = _situationDetail;
+@synthesize delegate = _delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,9 +35,10 @@
     return self;
 }
 
-- (id)initWithImage:(UIImage *)photo imagePicker:(UIImagePickerController *)picker {
+- (id)initWithImage:(UIImage *)photo workID:(NSString *)workID imagePicker:(UIImagePickerController *)picker {
   if ((self = [self initWithNibName:nil bundle:nil])) {
-    self.image = photo;
+    self.situationImage = photo;
+    self.workID = workID;
     self.picker = picker;    
   }
   return self;
@@ -42,9 +46,11 @@
 
 - (void)dealloc
 {
-  TT_RELEASE_SAFELY(_image);
+  TT_RELEASE_SAFELY(_situationImage);
   TT_RELEASE_SAFELY(_picker);
   TT_RELEASE_SAFELY(_bottomToolbar);
+  TT_RELEASE_SAFELY(_situationDetail)
+  TT_RELEASE_SAFELY(_workID);
   [super dealloc];
 }
 
@@ -57,15 +63,6 @@
   [self initializeImageView];
   [self initializeBottomToolbar];
 }
-
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-*/
 
 - (void)viewDidUnload
 {
@@ -87,7 +84,7 @@
   
   UIBarButtonItem *addCaptionButton = [[[UIBarButtonItem alloc] initWithTitle:@"加上註解" style:UIBarButtonItemStylePlain target:self action:@selector(addCaptionToImage)] autorelease];
   
-  UIBarButtonItem *uploadButton = [[[UIBarButtonItem alloc] initWithTitle:@"上傳" style:UIBarButtonItemStylePlain target:self action:@selector(uploadImage:)] autorelease];
+  UIBarButtonItem *uploadButton = [[[UIBarButtonItem alloc] initWithTitle:@"上傳" style:UIBarButtonItemStylePlain target:self action:@selector(uploadImage)] autorelease];
   
   UIBarButtonItem *flexibleSpace = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] autorelease];
   
@@ -103,7 +100,7 @@
   CGFloat width = 320;
   CGRect imageFrame = CGRectMake(positionX, positionY, width, height);
 //  UIImage *shrunkemImage = shrinkImage(self.image, imageFrame.size, imageFrame.origin);
-  UIImageView *imageView = [[[UIImageView alloc] initWithImage:self.image] autorelease];
+  UIImageView *imageView = [[[UIImageView alloc] initWithImage:self.situationImage] autorelease];
   imageView.frame = imageFrame;
 //  imageView.frame = CGRectMake(positionX, positionY, width, height);
   
@@ -112,7 +109,7 @@
 
 - (void)cancelPhotoReportViewController {
 //  [_picker popToRootViewControllerAnimated:YES];
-  [_picker popViewControllerAnimated:YES];
+  [_picker dismissModalViewControllerAnimated:YES];
 }
 - (void)addCaptionToImage {
   [[TTNavigator navigator].URLMap from:@"tt://post"
@@ -121,8 +118,25 @@
   [[TTNavigator navigator] openURLAction:action];
 
 }
-- (void)uploadImage:(NSString *)postedText {
+- (void)uploadImage {
   //use TTURLRequeseModel to upload image
+  TTURLRequest *request = [TTURLRequest requestWithURL:kUploadSituationImageAndDetailAPI delegate:self];
+  
+  request.httpMethod = @"POST";
+  [request.parameters setObject:_workID forKey:@"work_id"];
+  TTDPRINT(@"_situation: %@", _situationDetail);
+  if (_situationDetail != nil) {
+    [request.parameters setObject:_situationDetail forKey:@"situation_content"];    
+  } else {
+    [request.parameters setObject:@"No Description" forKey:@"situation_content"];
+  }
+  [request addFile:UIImagePNGRepresentation(_situationImage) mimeType:@"image/png" fileName:@"situation_image"];
+  
+  request.cachePolicy = TTURLRequestCachePolicyNone;
+  request.response = nil;
+  
+  [request send];
+  [_picker dismissModalViewControllerAnimated:YES];
 }
 
 - (UIViewController *)post:(NSDictionary*)query {
@@ -136,7 +150,7 @@
 #pragma - TTPostController delegate
 
 - (BOOL)postController:(TTPostController*)postController willPostText:(NSString*)text {
-  [self uploadImage:text];
+  _situationDetail = [[NSString alloc] initWithString:text];
   return YES;
 }
 - (void)postController: (TTPostController*)postController

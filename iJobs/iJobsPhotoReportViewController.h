@@ -8,17 +8,28 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol iJobsPhotoReportViewDelegate;
 
 @interface iJobsPhotoReportViewController : UIViewController<TTPostControllerDelegate> {
   UIToolbar *_bottomToolbar;
   UIImagePickerController *_picker;
-  UIImage *_image;
+  UIImage *_situationImage;
+  NSString *_situationDetail;
+  NSString *_workID;
+  id _delegate;
 }
 
 @property(nonatomic, retain) UIToolbar *bottomToolbar;
 @property(nonatomic, retain) UIImagePickerController *picker;
-@property(nonatomic, retain) UIImage *image;
+@property(nonatomic, retain) UIImage *situationImage;
+@property(nonatomic, retain) NSString *situationDetail;
+@property(nonatomic, retain) NSString *workID;
+@property(nonatomic, retain) id delegate;
 
-- (id)initWithImage:(UIImage *)photo imagePicker:(UIImagePickerController *)picker;
+- (id)initWithImage:(UIImage *)photo workID:(NSString *)workID imagePicker:(UIImagePickerController *)picker;
 
+@end
+
+@protocol iJobsPhotoReportViewDelegate<NSObject>
+- (void)removePhotoReportViewController;
 @end

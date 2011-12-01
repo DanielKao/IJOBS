@@ -25,6 +25,7 @@
 #define kLogoutAPI @"http://localhost:3000/signout"
 #define kWorkListAPI @"http://localhost:3000/microposts.json"
 #define kUploadSignatureImageAPI @"http://localhost:3000/uploadSignatureImage"
+#define kUploadSituationImageAndDetailAPI @"http://localhost:3000/uploadSituationImage"
 
 // notification name for login
 #define kLoginNotification @"loginNotification"

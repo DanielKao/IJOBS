@@ -293,11 +293,10 @@
   TTURLRequest *request = [TTURLRequest requestWithURL:kUploadSignatureImageAPI delegate:self];
   request.httpMethod = @"POST";
   
-  [request.parameters setObject:_workItem.workID forKey:@"workID"];
+  [request.parameters setObject:_workItem.workID forKey:@"work_id"];
   [request addFile:UIImagePNGRepresentation(signatureImageView.image) mimeType:@"image/png" fileName:@"signature_image"];
   request.cachePolicy = TTURLRequestCachePolicyNone;
-  request.response = [[[TTURLJSONResponse alloc] init] autorelease];
-  
+  request.response = nil;
   [request send];
 }
 
@@ -306,7 +305,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
   //UIImage *selectedImage = [info objectForKey:UIImagePickerControllerEditedImage];
   UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-  iJobsPhotoReportViewController *reportViewController = [[iJobsPhotoReportViewController alloc] initWithImage:originalImage imagePicker:picker];
+  iJobsPhotoReportViewController *reportViewController = [[iJobsPhotoReportViewController alloc] initWithImage:originalImage workID:_workItem.workID imagePicker:picker];
   [picker pushViewController:reportViewController animated:YES];
 }
 
@@ -314,6 +313,10 @@
   [picker dismissModalViewControllerAnimated:YES];
 }
 
+- (void)removePhotoReportViewController {
+  [self dismissModalViewControllerAnimated:YES];
+}
+ 
 #pragma -
 #pragma mark MapView Methods
 
