@@ -24,7 +24,7 @@
 #define kLoginAPI @"http://localhost:3000/iphone-signin"
 #define kLogoutAPI @"http://localhost:3000/signout"
 #define kWorkListAPI @"http://localhost:3000/microposts.json"
-#define kUploadSignatureImageAPI @"http://localhost:3000//uploadSignatureImage"
+#define kUploadSignatureImageAPI @"http://localhost:3000/uploadSignatureImage"
 
 // notification name for login
 #define kLoginNotification @"loginNotification"

@@ -294,7 +294,7 @@
   request.httpMethod = @"POST";
   
   [request.parameters setObject:_workItem.workID forKey:@"workID"];
-  [request addFile:UIImagePNGRepresentation(signatureImageView.image) mimeType:@"image/png" fileName:@"signatureImage.png"];
+  [request addFile:UIImagePNGRepresentation(signatureImageView.image) mimeType:@"image/png" fileName:@"signature_image"];
   request.cachePolicy = TTURLRequestCachePolicyNone;
   request.response = [[[TTURLJSONResponse alloc] init] autorelease];
   
