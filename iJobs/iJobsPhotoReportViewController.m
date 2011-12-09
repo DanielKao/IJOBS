@@ -131,7 +131,7 @@
     [request.parameters setObject:@"No Description" forKey:@"situation_content"];
   }
   [request addFile:UIImagePNGRepresentation(_situationImage) mimeType:@"image/png" fileName:@"situation_image"];
-  
+
   request.cachePolicy = TTURLRequestCachePolicyNone;
   request.response = nil;
   
