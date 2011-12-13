@@ -4,3 +4,6 @@
 [submodule "submodule/DDAlertPrompt"]
 	path = submodule/DDAlertPrompt
 	url = https://github.com/digdog/DDAlertPrompt.git
+[submodule "MBProgressHUD"]
+	path = MBProgressHUD
+	url = git://github.com/matej/MBProgressHUD.git
