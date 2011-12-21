@@ -17,6 +17,17 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		3730777F14A1F70800C303ED /* libUAirship-1.1.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3730777E14A1F70800C303ED /* libUAirship-1.1.1.a */; };
+		3730778114A1F71800C303ED /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3730778014A1F71800C303ED /* AudioToolbox.framework */; };
+		3730778314A1F72200C303ED /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3730778214A1F72200C303ED /* MessageUI.framework */; };
+		3730778514A1F72A00C303ED /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3730778414A1F72A00C303ED /* CFNetwork.framework */; };
+		3730778714A1F74A00C303ED /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3730778614A1F74900C303ED /* MobileCoreServices.framework */; };
+		3730778914A1F75200C303ED /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3730778814A1F75200C303ED /* Security.framework */; };
+		3730778B14A1F76200C303ED /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3730778A14A1F76200C303ED /* SystemConfiguration.framework */; };
+		3730778D14A1F78300C303ED /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3730778C14A1F78300C303ED /* libz.dylib */; };
+		3730778F14A1F79000C303ED /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3730778E14A1F79000C303ED /* libsqlite3.dylib */; };
+		3730779114A1F79800C303ED /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3730779014A1F79800C303ED /* CoreTelephony.framework */; };
+		3730779314A1F79F00C303ED /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3730779214A1F79F00C303ED /* StoreKit.framework */; };
 		E90BD1B91436091F00400F76 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90BD1B81436091F00400F76 /* MapKit.framework */; };
 		E910FD501429D3FA0034AEBB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E910FD4F1429D3FA0034AEBB /* UIKit.framework */; };
 		E910FD521429D3FA0034AEBB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E910FD511429D3FA0034AEBB /* Foundation.framework */; };
@@ -245,6 +256,17 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = submodule/Three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = submodule/Three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = submodule/Three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		3730777E14A1F70800C303ED /* libUAirship-1.1.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libUAirship-1.1.1.a"; path = "Airship/libUAirship-1.1.1.a"; sourceTree = "<group>"; };
+		3730778014A1F71800C303ED /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		3730778214A1F72200C303ED /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		3730778414A1F72A00C303ED /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		3730778614A1F74900C303ED /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		3730778814A1F75200C303ED /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3730778A14A1F76200C303ED /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3730778C14A1F78300C303ED /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3730778E14A1F79000C303ED /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		3730779014A1F79800C303ED /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		3730779214A1F79F00C303ED /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		E90BD1B81436091F00400F76 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E910FD4B1429D3FA0034AEBB /* iJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E910FD4F1429D3FA0034AEBB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -301,6 +323,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3730779314A1F79F00C303ED /* StoreKit.framework in Frameworks */,
+				3730779114A1F79800C303ED /* CoreTelephony.framework in Frameworks */,
+				3730778F14A1F79000C303ED /* libsqlite3.dylib in Frameworks */,
+				3730778D14A1F78300C303ED /* libz.dylib in Frameworks */,
+				E910FD501429D3FA0034AEBB /* UIKit.framework in Frameworks */,
+				3730778B14A1F76200C303ED /* SystemConfiguration.framework in Frameworks */,
+				3730778914A1F75200C303ED /* Security.framework in Frameworks */,
+				3730778714A1F74A00C303ED /* MobileCoreServices.framework in Frameworks */,
+				E910FD521429D3FA0034AEBB /* Foundation.framework in Frameworks */,
+				E910FD541429D3FB0034AEBB /* CoreGraphics.framework in Frameworks */,
+				3730778514A1F72A00C303ED /* CFNetwork.framework in Frameworks */,
+				3730778314A1F72200C303ED /* MessageUI.framework in Frameworks */,
+				3730778114A1F71800C303ED /* AudioToolbox.framework in Frameworks */,
+				3730777F14A1F70800C303ED /* libUAirship-1.1.1.a in Frameworks */,
 				E93E09AE1457EF4900FEB617 /* CoreData.framework in Frameworks */,
 				E90BD1B91436091F00400F76 /* MapKit.framework in Frameworks */,
 				3206A0F794A6D7A3F259DBF5 /* libextThree20JSON+SBJSON.a in Frameworks */,
@@ -312,9 +348,6 @@
 				320AF8492C47A4D819F7C451 /* QuartzCore.framework in Frameworks */,
 				320A5A189C235877202780D5 /* libThree20Network.a in Frameworks */,
 				320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */,
-				E910FD501429D3FA0034AEBB /* UIKit.framework in Frameworks */,
-				E910FD521429D3FA0034AEBB /* Foundation.framework in Frameworks */,
-				E910FD541429D3FB0034AEBB /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +440,17 @@
 		E910FD401429D3FA0034AEBB = {
 			isa = PBXGroup;
 			children = (
+				3730779214A1F79F00C303ED /* StoreKit.framework */,
+				3730779014A1F79800C303ED /* CoreTelephony.framework */,
+				3730778E14A1F79000C303ED /* libsqlite3.dylib */,
+				3730778C14A1F78300C303ED /* libz.dylib */,
+				3730778A14A1F76200C303ED /* SystemConfiguration.framework */,
+				3730778814A1F75200C303ED /* Security.framework */,
+				3730778614A1F74900C303ED /* MobileCoreServices.framework */,
+				3730778414A1F72A00C303ED /* CFNetwork.framework */,
+				3730778214A1F72200C303ED /* MessageUI.framework */,
+				3730778014A1F71800C303ED /* AudioToolbox.framework */,
+				3730777E14A1F70800C303ED /* libUAirship-1.1.1.a */,
 				E910FD551429D3FB0034AEBB /* iJobs */,
 				E910FD6F1429D3FB0034AEBB /* iJobsTests */,
 				E910FD4E1429D3FA0034AEBB /* Frameworks */,
@@ -998,6 +1042,7 @@
 					"$(BUILT_PRODUCTS_DIR)/../three20",
 					"$(BUILT_PRODUCTS_DIR)/../../three20",
 					submodule/Three20/Build/Products/three20,
+					"Airship/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -1015,6 +1060,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iJobs/iJobs-Prefix.pch";
 				INFOPLIST_FILE = "iJobs/iJobs-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Airship\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1028,6 +1077,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iJobs/iJobs-Prefix.pch";
 				INFOPLIST_FILE = "iJobs/iJobs-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Airship\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
