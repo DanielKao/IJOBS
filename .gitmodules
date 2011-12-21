@@ -7,3 +7,6 @@
 [submodule "MBProgressHUD"]
 	path = MBProgressHUD
 	url = git://github.com/matej/MBProgressHUD.git
+[submodule "submodule/urbanairship"]
+	path = submodule/urbanairship
+	url = git@github.com:urbanairship/ios-library.git

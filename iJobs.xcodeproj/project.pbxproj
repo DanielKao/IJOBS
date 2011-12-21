@@ -964,7 +964,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Dao Daniel (6CEKXUNQFX)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Dao Daniel (6CEKXUNQFX)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -979,7 +979,8 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "15F417D2-2F76-47ED-86FA-AFFB439E7E38";
+				PROVISIONING_PROFILE = "CF2C679E-04DC-4E4F-91C1-CD5816672E67";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CF2C679E-04DC-4E4F-91C1-CD5816672E67";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
