@@ -17,6 +17,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //Init Airship launch options
+    NSMutableDictionary *takeOffOptions = [[[NSMutableDictionary alloc] init] autorelease];
+    [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
+    
+    // Create Airship singleton that's used to talk to Urban Airship servers.
+    // Please replace these with your info from http://go.urbanairship.com
+    [UAirship takeOff:takeOffOptions];
+    
+    [[UAPush shared] enableAutobadge:YES];
+    [[UAPush shared] resetBadge];//zero badge on startup
+    
+    // Register for notifications through UAPush for notification type tracking
+    [[UAPush shared] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                         UIRemoteNotificationTypeSound |
+                                                         UIRemoteNotificationTypeAlert)];
+    
+    
   TTNavigator *navigator = [TTNavigator navigator];
   navigator.persistenceMode = TTNavigatorPersistenceModeAll;
   navigator.window = _window;
@@ -39,6 +56,18 @@
   return YES;
 }
 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    UALOG(@"Received remote notification: %@", userInfo);
+    
+    [[UAPush shared] handleNotification:userInfo applicationState:application.applicationState];
+    [[UAPush shared] resetBadge]; // zero badge after push received
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Updates the device token and registers the token with UA
+    [[UAPush shared] registerDeviceToken:deviceToken];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
   /*
@@ -49,6 +78,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+  [[UAPush shared] resetBadge];
   /*
    Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
    If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -71,11 +101,8 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-  /*
-   Called when the application is about to terminate.
-   Save data if appropriate.
-   See also applicationDidEnterBackground:.
-   */
+  [[UAPush shared] resetBadge];
+  [UAirship land];
 }
 
 #pragma mark - Application's Documents directory
