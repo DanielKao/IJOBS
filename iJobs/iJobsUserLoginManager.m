@@ -54,6 +54,7 @@ static iJobsUserLoginManager *gSharedInstance;
 }
 
 - (void)logout {
+  //you should add user a sign-out API here.
   TT_RELEASE_SAFELY(_userInfo);
   TT_RELEASE_SAFELY(_errorMessage);
 }
