@@ -40,20 +40,10 @@
 		37307A2914A200D400C303ED /* UAInboxNavUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730799114A200D400C303ED /* UAInboxNavUI.m */; };
 		37307A2A14A200D400C303ED /* UAInboxOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730799314A200D400C303ED /* UAInboxOverlayController.m */; };
 		37307A2B14A200D400C303ED /* UAInboxUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3730799514A200D400C303ED /* UAInboxUI.m */; };
-		37307A2C14A200D400C303ED /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 3730799814A200D400C303ED /* check.png */; };
-		37307A2D14A200D400C303ED /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3730799914A200D400C303ED /* check@2x.png */; };
-		37307A2E14A200D400C303ED /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 3730799A14A200D400C303ED /* down.png */; };
-		37307A2F14A200D400C303ED /* down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3730799B14A200D400C303ED /* down@2x.png */; };
-		37307A3014A200D400C303ED /* overlayCloseBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 3730799D14A200D400C303ED /* overlayCloseBtn.png */; };
-		37307A3114A200D400C303ED /* overlayCloseBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3730799E14A200D400C303ED /* overlayCloseBtn@2x.png */; };
 		37307A3214A200D400C303ED /* UAInboxLocalization.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3730799F14A200D400C303ED /* UAInboxLocalization.bundle */; };
 		37307A3314A200D400C303ED /* UAInboxMessageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373079A014A200D400C303ED /* UAInboxMessageListCell.xib */; };
 		37307A3414A200D400C303ED /* UAInboxMessageListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373079A114A200D400C303ED /* UAInboxMessageListController.xib */; };
 		37307A3514A200D400C303ED /* UAInboxMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373079A214A200D400C303ED /* UAInboxMessageViewController.xib */; };
-		37307A3614A200D400C303ED /* uncheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079A314A200D400C303ED /* uncheck.png */; };
-		37307A3714A200D400C303ED /* uncheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079A414A200D400C303ED /* uncheck@2x.png */; };
-		37307A3814A200D400C303ED /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079A514A200D400C303ED /* up.png */; };
-		37307A3914A200D400C303ED /* up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079A614A200D400C303ED /* up@2x.png */; };
 		37307A3A14A200D400C303ED /* UAPushMoreSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 373079AB14A200D400C303ED /* UAPushMoreSettingsViewController.m */; };
 		37307A3B14A200D400C303ED /* UAPushNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 373079AD14A200D400C303ED /* UAPushNotificationHandler.m */; };
 		37307A3C14A200D400C303ED /* UAPushSettingsAddTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 373079AF14A200D400C303ED /* UAPushSettingsAddTagViewController.m */; };
@@ -63,12 +53,6 @@
 		37307A4014A200D400C303ED /* UAPushSettingsTokenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 373079B714A200D400C303ED /* UAPushSettingsTokenViewController.m */; };
 		37307A4114A200D400C303ED /* UAPushSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 373079B914A200D400C303ED /* UAPushSettingsViewController.m */; };
 		37307A4214A200D400C303ED /* UAPushUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 373079BB14A200D400C303ED /* UAPushUI.m */; };
-		37307A4314A200D400C303ED /* bottom-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079BE14A200D400C303ED /* bottom-detail.png */; };
-		37307A4414A200D400C303ED /* bottom-detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079BF14A200D400C303ED /* bottom-detail@2x.png */; };
-		37307A4514A200D400C303ED /* middle-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079C014A200D400C303ED /* middle-detail.png */; };
-		37307A4614A200D400C303ED /* middle-detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079C114A200D400C303ED /* middle-detail@2x.png */; };
-		37307A4714A200D400C303ED /* top-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079C214A200D400C303ED /* top-detail.png */; };
-		37307A4814A200D400C303ED /* top-detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079C314A200D400C303ED /* top-detail@2x.png */; };
 		37307A4914A200D400C303ED /* UAPushLocalization.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 373079C414A200D400C303ED /* UAPushLocalization.bundle */; };
 		37307A4A14A200D400C303ED /* UAPushMoreSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373079C514A200D400C303ED /* UAPushMoreSettingsView.xib */; };
 		37307A4B14A200D400C303ED /* UAPushSettingsAddTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373079C614A200D400C303ED /* UAPushSettingsAddTagViewController.xib */; };
@@ -81,7 +65,6 @@
 		37307A5214A200D400C303ED /* UAStoreFrontiPadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 373079D214A200D400C303ED /* UAStoreFrontiPadViewController.m */; };
 		37307A5314A200D400C303ED /* UAStoreFrontSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 373079D414A200D400C303ED /* UAStoreFrontSplitViewController.m */; };
 		37307A5414A200D400C303ED /* UAProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 373079D714A200D400C303ED /* UAProductDetailViewController.m */; };
-		37307A5514A200D400C303ED /* UAPushLocalization.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 373079D814A200D400C303ED /* UAPushLocalization.bundle */; };
 		37307A5614A200D400C303ED /* UAStoreFrontAlertHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 373079DA14A200D400C303ED /* UAStoreFrontAlertHandler.m */; };
 		37307A5714A200D400C303ED /* UAStoreFrontCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 373079DC14A200D400C303ED /* UAStoreFrontCell.m */; };
 		37307A5814A200D400C303ED /* UAStoreFrontCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 373079DE14A200D400C303ED /* UAStoreFrontCellView.m */; };
@@ -90,14 +73,6 @@
 		37307A5B14A200D400C303ED /* UATableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 373079E414A200D400C303ED /* UATableCell.m */; };
 		37307A5C14A200D400C303ED /* UAProductDetailiPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373079E714A200D400C303ED /* UAProductDetailiPad.xib */; };
 		37307A5D14A200D400C303ED /* UAStoreFrontiPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373079E814A200D400C303ED /* UAStoreFrontiPad.xib */; };
-		37307A5E14A200D400C303ED /* accessory.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079EA14A200D400C303ED /* accessory.png */; };
-		37307A5F14A200D400C303ED /* accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079EB14A200D400C303ED /* accessory@2x.png */; };
-		37307A6014A200D400C303ED /* detail-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079EC14A200D400C303ED /* detail-bottom.png */; };
-		37307A6114A200D400C303ED /* detail-bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079ED14A200D400C303ED /* detail-bottom@2x.png */; };
-		37307A6214A200D400C303ED /* middle-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079EE14A200D400C303ED /* middle-detail.png */; };
-		37307A6314A200D400C303ED /* middle-detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079EF14A200D400C303ED /* middle-detail@2x.png */; };
-		37307A6414A200D400C303ED /* top-detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079F014A200D400C303ED /* top-detail.png */; };
-		37307A6514A200D400C303ED /* top-detail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 373079F114A200D400C303ED /* top-detail@2x.png */; };
 		37307A6614A200D400C303ED /* UAProductDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373079F214A200D400C303ED /* UAProductDetail.xib */; };
 		37307A6714A200D400C303ED /* UAStoreFront.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373079F314A200D400C303ED /* UAStoreFront.xib */; };
 		37307A6814A200D400C303ED /* UAStoreFrontLocalization.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 373079F414A200D400C303ED /* UAStoreFrontLocalization.bundle */; };
@@ -586,7 +561,7 @@
 		E910FD5B1429D3FB0034AEBB /* iJobs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iJobs-Prefix.pch"; sourceTree = "<group>"; };
 		E910FD5C1429D3FB0034AEBB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E910FD5E1429D3FB0034AEBB /* iJobsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iJobsAppDelegate.h; sourceTree = "<group>"; };
-		E910FD5F1429D3FB0034AEBB /* iJobsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iJobsAppDelegate.m; sourceTree = "<group>"; };
+		E910FD5F1429D3FB0034AEBB /* iJobsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iJobsAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E910FD621429D3FB0034AEBB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		E910FD691429D3FB0034AEBB /* iJobsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iJobsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E910FD711429D3FB0034AEBB /* iJobsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iJobsTests-Info.plist"; sourceTree = "<group>"; };
@@ -1508,6 +1483,7 @@
 		E910FD421429D3FA0034AEBB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = NCCUCS;
 			};
 			buildConfigurationList = E910FD451429D3FA0034AEBB /* Build configuration list for PBXProject "iJobs" */;
@@ -1695,26 +1671,10 @@
 				37307A2014A200D400C303ED /* CHANGELOG in Resources */,
 				37307A2214A200D400C303ED /* LICENSE in Resources */,
 				37307A2314A200D400C303ED /* README.rst in Resources */,
-				37307A2C14A200D400C303ED /* check.png in Resources */,
-				37307A2D14A200D400C303ED /* check@2x.png in Resources */,
-				37307A2E14A200D400C303ED /* down.png in Resources */,
-				37307A2F14A200D400C303ED /* down@2x.png in Resources */,
-				37307A3014A200D400C303ED /* overlayCloseBtn.png in Resources */,
-				37307A3114A200D400C303ED /* overlayCloseBtn@2x.png in Resources */,
 				37307A3214A200D400C303ED /* UAInboxLocalization.bundle in Resources */,
 				37307A3314A200D400C303ED /* UAInboxMessageListCell.xib in Resources */,
 				37307A3414A200D400C303ED /* UAInboxMessageListController.xib in Resources */,
 				37307A3514A200D400C303ED /* UAInboxMessageViewController.xib in Resources */,
-				37307A3614A200D400C303ED /* uncheck.png in Resources */,
-				37307A3714A200D400C303ED /* uncheck@2x.png in Resources */,
-				37307A3814A200D400C303ED /* up.png in Resources */,
-				37307A3914A200D400C303ED /* up@2x.png in Resources */,
-				37307A4314A200D400C303ED /* bottom-detail.png in Resources */,
-				37307A4414A200D400C303ED /* bottom-detail@2x.png in Resources */,
-				37307A4514A200D400C303ED /* middle-detail.png in Resources */,
-				37307A4614A200D400C303ED /* middle-detail@2x.png in Resources */,
-				37307A4714A200D400C303ED /* top-detail.png in Resources */,
-				37307A4814A200D400C303ED /* top-detail@2x.png in Resources */,
 				37307A4914A200D400C303ED /* UAPushLocalization.bundle in Resources */,
 				37307A4A14A200D400C303ED /* UAPushMoreSettingsView.xib in Resources */,
 				37307A4B14A200D400C303ED /* UAPushSettingsAddTagViewController.xib in Resources */,
@@ -1723,17 +1683,8 @@
 				37307A4E14A200D400C303ED /* UAPushSettingsTagsViewController.xib in Resources */,
 				37307A4F14A200D400C303ED /* UAPushSettingsTokenView.xib in Resources */,
 				37307A5014A200D400C303ED /* UAPushSettingsView.xib in Resources */,
-				37307A5514A200D400C303ED /* UAPushLocalization.bundle in Resources */,
 				37307A5C14A200D400C303ED /* UAProductDetailiPad.xib in Resources */,
 				37307A5D14A200D400C303ED /* UAStoreFrontiPad.xib in Resources */,
-				37307A5E14A200D400C303ED /* accessory.png in Resources */,
-				37307A5F14A200D400C303ED /* accessory@2x.png in Resources */,
-				37307A6014A200D400C303ED /* detail-bottom.png in Resources */,
-				37307A6114A200D400C303ED /* detail-bottom@2x.png in Resources */,
-				37307A6214A200D400C303ED /* middle-detail.png in Resources */,
-				37307A6314A200D400C303ED /* middle-detail@2x.png in Resources */,
-				37307A6414A200D400C303ED /* top-detail.png in Resources */,
-				37307A6514A200D400C303ED /* top-detail@2x.png in Resources */,
 				37307A6614A200D400C303ED /* UAProductDetail.xib in Resources */,
 				37307A6714A200D400C303ED /* UAStoreFront.xib in Resources */,
 				37307A6814A200D400C303ED /* UAStoreFrontLocalization.bundle in Resources */,

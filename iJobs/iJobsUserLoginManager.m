@@ -63,9 +63,12 @@ static iJobsUserLoginManager *gSharedInstance;
   TTURLRequest *request = [TTURLRequest requestWithURL:kLoginAPI delegate:self];
   request.httpMethod = @"POST";
   
+  NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+  NSString *deviceToken = [userDefault objectForKey:@"deviceToken"];
+  NSLog(@"deviceToken: %@", deviceToken);
   [request.parameters setObject:userEmail forKey:@"email"];
   [request.parameters setObject:userPassword forKey:@"password"];
-  
+  [request.parameters setObject:deviceToken forKey:@"device_token"];
   request.cachePolicy = TTURLRequestCachePolicyNone;
   request.response = [[[TTURLJSONResponse alloc] init] autorelease];
   

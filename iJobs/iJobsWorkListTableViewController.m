@@ -37,6 +37,11 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self reload];
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLoginButton:) name:kLoginNotification object:nil];
@@ -110,7 +115,8 @@
   } else {
     if ([alertView isKindOfClass:[DDAlertPrompt class]]) {
       DDAlertPrompt *loginPrompt = (DDAlertPrompt *)alertView;
-      [self loginWithUserEmail:loginPrompt.plainTextField.text userPassword:loginPrompt.secretTextField.text];
+//      [self loginWithUserEmail:loginPrompt.plainTextField.text userPassword:loginPrompt.secretTextField.text];
+      [self loginWithUserEmail:@"apn@apn.com" userPassword:@"123456"];
     }
   }
 }

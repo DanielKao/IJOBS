@@ -10,6 +10,9 @@
 #import "iJobsSummaryTableViewController.h"
 #import "iJobsWorkListTableViewController.h"
 #import "iJobsWorkDetailTableViewController.h"
+#import "UAirship.h"
+#import "UAPush.h"
+
 @implementation iJobsAppDelegate
 
 @synthesize window = _window;
@@ -20,7 +23,7 @@
     //Init Airship launch options
     NSMutableDictionary *takeOffOptions = [[[NSMutableDictionary alloc] init] autorelease];
     [takeOffOptions setValue:launchOptions forKey:UAirshipTakeOffOptionsLaunchOptionsKey];
-    
+        
     // Create Airship singleton that's used to talk to Urban Airship servers.
     // Please replace these with your info from http://go.urbanairship.com
     [UAirship takeOff:takeOffOptions];
@@ -33,7 +36,7 @@
                                                          UIRemoteNotificationTypeSound |
                                                          UIRemoteNotificationTypeAlert)];
     
-    
+  
   TTNavigator *navigator = [TTNavigator navigator];
   navigator.persistenceMode = TTNavigatorPersistenceModeAll;
   navigator.window = _window;
@@ -65,7 +68,15 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Updates the device token and registers the token with UA
-    [[UAPush shared] registerDeviceToken:deviceToken];
+    [[UAPush shared] registerDeviceToken:deviceToken];    
+    
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *deviceTokenStr = [NSString stringWithString:[deviceToken description]];
+    NSRange range = NSMakeRange(1, [deviceTokenStr length] - 2);
+    deviceTokenStr = [deviceTokenStr substringWithRange:range];
+    deviceTokenStr = [deviceTokenStr stringByReplacingOccurrencesOfString:@" " withString:@""];
+    [userDefault setObject:deviceTokenStr forKey:@"deviceToken"];
+    NSLog(@"deviceTokenStr: %@", deviceTokenStr);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

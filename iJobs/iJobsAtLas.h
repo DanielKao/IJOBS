@@ -21,11 +21,19 @@
 // iJobs APP API
 //fieldworker.heroku.com
 
-#define kLoginAPI @"http://localhost:3000/iphone-signin"
-#define kLogoutAPI @"http://localhost:3000/signout"
-#define kWorkListAPI @"http://localhost:3000/microposts.json"
-#define kUploadSignatureImageAPI @"http://localhost:3000/uploadSignatureImage"
-#define kUploadSituationImageAndDetailAPI @"http://localhost:3000/uploadSituationImage"
+#define kLoginAPI @"http://fieldworker.heroku.com/iphone-signin"
+#define kLogoutAPI @"http://fieldworker.heroku.com/signout"
+#define kWorkListAPI @"http://fieldworker.heroku.com/microposts.json"
+#define kUploadSignatureImageAPI @"http://fieldworker.heroku.com/uploadSignatureImage"
+#define kUploadSituationImageAndDetailAPI @"http://fieldworker.heroku.com/uploadSituationImage"
+
+
+
+//#define kLoginAPI @"http://localhost:3000/iphone-signin"
+//#define kLogoutAPI @"http://localhost:3000/signout"
+//#define kWorkListAPI @"http://localhost:3000/microposts.json"
+//#define kUploadSignatureImageAPI @"http://localhost:3000/uploadSignatureImage"
+//#define kUploadSituationImageAndDetailAPI @"http://localhost:3000/uploadSituationImage"
 
 // notification name for login
 #define kLoginNotification @"loginNotification"
