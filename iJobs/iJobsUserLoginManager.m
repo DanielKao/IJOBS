@@ -98,7 +98,7 @@ static iJobsUserLoginManager *gSharedInstance;
   _errorMessage = [[NSString alloc] initWithData:responseData encoding:NSASCIIStringEncoding];
   TTDPRINT(@"errorMessage: %@", _errorMessage);
    */
-  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"錯誤" message:@"請檢查帳號密碼或洽系統管理員" delegate:nil cancelButtonTitle:@"確認" otherButtonTitles:nil];
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"錯誤" message:@"請檢查帳號密碼或洽系統管理員" delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
   [alertView show];
   TT_RELEASE_SAFELY(alertView);
   [super request:request didFailLoadWithError:error];
@@ -117,5 +117,10 @@ static iJobsUserLoginManager *gSharedInstance;
   [[NSNotificationCenter defaultCenter] postNotificationName:kLoginNotification object:nil];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex == 0) {
+    [_delegate loginPrompt];
+  }
+}
 
 @end

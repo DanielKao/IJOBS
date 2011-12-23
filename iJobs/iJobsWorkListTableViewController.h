@@ -13,7 +13,7 @@
 @interface iJobsWorkListTableViewController : TTTableViewController<iJobsUserLoginManagerDelegate> {
   iJobsWorkListTableViewDelegate *_tableViewDelegate;
 }
-
+- (void)loginPrompt;
 @property(nonatomic, retain) iJobsWorkListTableViewDelegate *tableViewDelegate;
 
 @end

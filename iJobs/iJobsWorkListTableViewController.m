@@ -45,7 +45,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  [self viewWillAppear:animated];
+  [super viewWillAppear:animated];
   BOOL isUserLogin = [[iJobsUserLoginManager sharedInstance] isUserLogin];
   if (isUserLogin) {
     [self refresh];
@@ -122,7 +122,12 @@
   } else {
     if ([alertView isKindOfClass:[DDAlertPrompt class]]) {
       DDAlertPrompt *loginPrompt = (DDAlertPrompt *)alertView;
-      [self loginWithUserEmail:loginPrompt.plainTextField.text userPassword:loginPrompt.secretTextField.text];
+
+      if ([loginPrompt.plainTextField.text isEqualToString:@""] || [loginPrompt.secretTextField.text isEqualToString:@""]) {
+        [self loginWithUserEmail:@"This is fucking wrong!" userPassword:@"This is fucking wrong!"];        
+      }else {
+        [self loginWithUserEmail:loginPrompt.plainTextField.text userPassword:loginPrompt.secretTextField.text];
+      }
 //      [self loginWithUserEmail:@"apn@apn.com" userPassword:@"123456"];
     }
   }
