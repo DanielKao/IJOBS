@@ -593,7 +593,7 @@
 		E9F72A0F14332A23006062CE /* iJobsUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iJobsUserInfo.h; sourceTree = "<group>"; };
 		E9F72A1014332A23006062CE /* iJobsUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iJobsUserInfo.m; sourceTree = "<group>"; };
 		E9F72A1314332A5C006062CE /* iJobsUserLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iJobsUserLoginManager.h; sourceTree = "<group>"; };
-		E9F72A1414332A5C006062CE /* iJobsUserLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iJobsUserLoginManager.m; sourceTree = "<group>"; };
+		E9F72A1414332A5C006062CE /* iJobsUserLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iJobsUserLoginManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E9F72A161434AC26006062CE /* iJobsPhotoReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iJobsPhotoReportViewController.h; sourceTree = "<group>"; };
 		E9F72A171434AC26006062CE /* iJobsPhotoReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iJobsPhotoReportViewController.m; sourceTree = "<group>"; };
 		E9FBBA31143974D000019866 /* iJobsGoogleMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iJobsGoogleMapViewController.h; sourceTree = "<group>"; };

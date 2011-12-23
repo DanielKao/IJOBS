@@ -95,7 +95,7 @@ static iJobsUserLoginManager *gSharedInstance;
 - (void)request:(TTURLRequest*)request didFailLoadWithError:(NSError*)error {
   /*
   NSData *responseData = [[error userInfo] objectForKey:@"responsedata"];
-  _errorMessage = [[NSString alloc] initWithData:responseData encoding:NSASCIIStringEncoding];
+  _errorMessage = [[NSString alloc] initWithData:response Data encoding:NSASCIIStringEncoding];
   TTDPRINT(@"errorMessage: %@", _errorMessage);
    */
   UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"錯誤" message:@"請檢查帳號密碼或洽系統管理員" delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
