@@ -40,8 +40,16 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLoginButton:) name:kLoginNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAfterLogin::) name:kLoginNotification object:nil];    
   [self loginPrompt];
-  
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [self viewWillAppear:animated];
+  BOOL isUserLogin = [[iJobsUserLoginManager sharedInstance] isUserLogin];
+  if (isUserLogin) {
+    [self refresh];
+  }
 }
 
 - (void)viewDidUnload {
@@ -87,6 +95,10 @@
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登出" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
 }
 
+- (void)refreshAfterLogin:(NSNotification *)notification {
+    [self reload];
+}
+
 - (void)logout {
   [[iJobsUserLoginManager sharedInstance] logout];
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登入" style:UIBarButtonItemStyleBordered target:self action:@selector(loginPrompt)] autorelease];
@@ -110,8 +122,8 @@
   } else {
     if ([alertView isKindOfClass:[DDAlertPrompt class]]) {
       DDAlertPrompt *loginPrompt = (DDAlertPrompt *)alertView;
-//      [self loginWithUserEmail:loginPrompt.plainTextField.text userPassword:loginPrompt.secretTextField.text];
-      [self loginWithUserEmail:@"apn@apn.com" userPassword:@"123456"];
+      [self loginWithUserEmail:loginPrompt.plainTextField.text userPassword:loginPrompt.secretTextField.text];
+//      [self loginWithUserEmail:@"apn@apn.com" userPassword:@"123456"];
     }
   }
 }

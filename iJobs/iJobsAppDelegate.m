@@ -10,6 +10,7 @@
 #import "iJobsSummaryTableViewController.h"
 #import "iJobsWorkListTableViewController.h"
 #import "iJobsWorkDetailTableViewController.h"
+#import "iJobsUserLoginManager.h"
 #import "UAirship.h"
 #import "UAPush.h"
 
@@ -112,6 +113,8 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+  [[iJobsUserLoginManager sharedInstance] logout];
+  
   [[UAPush shared] resetBadge];
   [UAirship land];
 }

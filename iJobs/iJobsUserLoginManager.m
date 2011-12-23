@@ -54,7 +54,12 @@ static iJobsUserLoginManager *gSharedInstance;
 }
 
 - (void)logout {
-  //you should add user a sign-out API here.
+  //you should add use a sign-out API here.
+  TTURLRequest *request = [TTURLRequest requestWithURL:kLogoutAPI delegate:self];
+  request.httpMethod = @"GET";
+  request.cachePolicy = TTURLRequestCachePolicyNone;
+  [request send];
+  
   TT_RELEASE_SAFELY(_userInfo);
   TT_RELEASE_SAFELY(_errorMessage);
 }
