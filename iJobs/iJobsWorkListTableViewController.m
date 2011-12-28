@@ -78,7 +78,8 @@
 
 - (void)cleanUpTableView {
   self.dataSource = [[[TTListDataSource alloc] init] autorelease];
-  [self refresh];
+//  [[[(iJobsWorkListDataSource *)self.dataSource workListModel] workListItems] removeAllObjects];
+  [self reload];
 }
 
 - (void)loginPrompt {
@@ -102,7 +103,7 @@
 }
 
 - (void)refreshAfterLogin:(NSNotification *)notification {
-    [self reload];
+  [self createModel];
 }
 
 - (void)logout {
@@ -128,7 +129,7 @@
       DDAlertPrompt *loginPrompt = (DDAlertPrompt *)alertView;
 
       if ([loginPrompt.plainTextField.text isEqualToString:@""] || [loginPrompt.secretTextField.text isEqualToString:@""]) {
-        [self loginWithUserEmail:@"This is fucking wrong!" userPassword:@"This is fucking wrong!"];        
+        [self loginWithUserEmail:@"1@1.com" userPassword:@"123456"];        
       }else {
         [self loginWithUserEmail:loginPrompt.plainTextField.text userPassword:loginPrompt.secretTextField.text];
       }
@@ -140,7 +141,7 @@
 #pragma - iJobsUserLoginManagerDelegate
 
 - (void)userDidFinishLogin:(TTURLRequest *)request {
-  [self createModel];
+  [self refresh];
 }
 
 

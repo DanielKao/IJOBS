@@ -121,12 +121,7 @@
 	
 	UITouch *touch = [touches anyObject];
 	
-	if ([touch tapCount] == 2) {
-		drawImage.image = nil;
-		return;
-	}
-	
-	
+		
 	if(!mouseSwiped) {
 		UIGraphicsBeginImageContext(self.view.frame.size);
 		[drawImage.image drawInRect:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
