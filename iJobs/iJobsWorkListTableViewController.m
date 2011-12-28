@@ -70,6 +70,7 @@
 
   if (isUserLogin) {
     self.dataSource = [[[iJobsWorkListDataSource alloc] initWithWorkListAPI] autorelease];
+    [self reload];
   }
   
 }
@@ -78,9 +79,8 @@
 
 - (void)cleanUpTableView {
   TT_RELEASE_SAFELY(_dataSource);
-  self.dataSource = [[[TTListDataSource alloc] init] autorelease];
-//  [[[(iJobsWorkListDataSource *)self.dataSource workListModel] workListItems] removeAllObjects];
-  [self reload];
+  [(iJobsWorkListDataSource *)self.dataSource clearModel];
+  [self refresh];
 }
 
 - (void)loginPrompt {

@@ -29,13 +29,6 @@
   return self;
 }
 
-- (id)initWithMockupData {
-  self = [self init];
-  if (self) {
-  }
-  return self;
-}
-
 - (id)initWithWorkListAPI {
   self = [self init];
   if (self) {
@@ -97,6 +90,10 @@
   TTURLAction *action = [[[TTURLAction actionWithURLPath:kWorkDetailPath] applyQuery:[NSDictionary dictionaryWithObject:[self.workListModel.workListItems objectAtIndex:[number intValue]] forKey:kParameterWorkItem]] applyAnimated:YES];
 
   [[TTNavigator navigator] openURLAction:action];
+}
+
+- (void)clearModel {
+  [self.workListModel.workListItems removeAllObjects];
 }
 
 @end

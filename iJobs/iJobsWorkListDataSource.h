@@ -16,7 +16,6 @@
 
 @property(nonatomic, retain) iJobsWorkListModel *workListModel;
 
-- (id)initWithMockupData;
 - (id)initWithWorkListAPI;
-
+- (void)clearModel;
 @end

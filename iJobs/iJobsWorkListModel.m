@@ -17,7 +17,7 @@
   if (!self.isLoading) {
     TTURLRequest *request = [TTURLRequest requestWithURL:kWorkListAPI delegate:self];
     request.cachePolicy = cachePolicy;
-    request.cacheExpirationAge = TT_DEFAULT_CACHE_EXPIRATION_AGE;
+    request.cacheExpirationAge = TTURLRequestCachePolicyNoCache;
     TTURLJSONResponse *response = [[[TTURLJSONResponse alloc] init] autorelease];
     request.response = response;
     [request send];
