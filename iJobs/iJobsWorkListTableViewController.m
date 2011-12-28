@@ -69,7 +69,7 @@
   [[iJobsUserLoginManager sharedInstance] setDelegate:self];
 
   if (isUserLogin) {
-    self.dataSource = [[iJobsWorkListDataSource alloc] initWithWorkListAPI];
+    self.dataSource = [[[iJobsWorkListDataSource alloc] initWithWorkListAPI] autorelease];
   }
   
 }
@@ -77,6 +77,7 @@
 #pragma - private method
 
 - (void)cleanUpTableView {
+  TT_RELEASE_SAFELY(_dataSource);
   self.dataSource = [[[TTListDataSource alloc] init] autorelease];
 //  [[[(iJobsWorkListDataSource *)self.dataSource workListModel] workListItems] removeAllObjects];
   [self reload];
@@ -138,11 +139,11 @@
   }
 }
 
-#pragma - iJobsUserLoginManagerDelegate
-
-- (void)userDidFinishLogin:(TTURLRequest *)request {
-  [self refresh];
-}
+//#pragma - iJobsUserLoginManagerDelegate
+//
+//- (void)userDidFinishLogin:(TTURLRequest *)request {
+//  [self refresh];
+//}
 
 
 

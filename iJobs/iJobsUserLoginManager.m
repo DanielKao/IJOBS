@@ -124,7 +124,7 @@ static iJobsUserLoginManager *gSharedInstance;
     
     _userInfo = [[iJobsUserInfo alloc] initWithUserName:[userInfoDicionary objectForKey:@"name"] userEmail:[userInfoDicionary objectForKey:@"email"] userId:[userInfoDicionary objectForKey:@"id"] admin:[[userInfoDicionary objectForKey:@"admin"] boolValue]];
     
-    [_delegate userDidFinishLogin:request];
+//    [_delegate userDidFinishLogin:request];
     [[NSNotificationCenter defaultCenter] postNotificationName:kLoginNotification object:nil];
     }
   }else {
