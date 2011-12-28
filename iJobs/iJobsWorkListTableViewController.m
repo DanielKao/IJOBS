@@ -40,7 +40,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLoginButton:) name:kLoginNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAfterLogin::) name:kLoginNotification object:nil];    
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLoginButton:) name:kLogoutNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAfterLogin:) name:kLoginNotification object:nil];    
   [self loginPrompt];
 }
 
@@ -92,7 +93,12 @@
 }
 
 - (void)changeLoginButton:(NSNotification *)notification {
-  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登出" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
+  if (notification.name == kLoginNotification) {
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登出" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];    
+  }
+  else {
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登入" style:UIBarButtonItemStyleBordered target:self action:@selector(loginPrompt)] autorelease];    
+  }
 }
 
 - (void)refreshAfterLogin:(NSNotification *)notification {
@@ -103,9 +109,6 @@
   [[iJobsUserLoginManager sharedInstance] logout];
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登入" style:UIBarButtonItemStyleBordered target:self action:@selector(loginPrompt)] autorelease];
   [self cleanUpTableView];
-  
-  //TODO: clean workList after logout.
-
 }
 #pragma - DDAlertPrompt Delegate
 
@@ -119,6 +122,7 @@
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
   if (buttonIndex == [alertView cancelButtonIndex]) {
+    [self cleanUpTableView];
   } else {
     if ([alertView isKindOfClass:[DDAlertPrompt class]]) {
       DDAlertPrompt *loginPrompt = (DDAlertPrompt *)alertView;

@@ -69,14 +69,22 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Updates the device token and registers the token with UA
+  if (deviceToken != nil) {
     [[UAPush shared] registerDeviceToken:deviceToken];    
+  }
+    
     
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *deviceTokenStr = [NSString stringWithString:[deviceToken description]];
     NSRange range = NSMakeRange(1, [deviceTokenStr length] - 2);
     deviceTokenStr = [deviceTokenStr substringWithRange:range];
     deviceTokenStr = [deviceTokenStr stringByReplacingOccurrencesOfString:@" " withString:@""];
+
+  if (deviceToken == nil) {
+    [userDefault setObject:@"This is not a valid token, caused by simulator" forKey:@"deviceToken"];
+  }else{
     [userDefault setObject:deviceTokenStr forKey:@"deviceToken"];
+  }
     NSLog(@"deviceTokenStr: %@", deviceTokenStr);
 }
 
