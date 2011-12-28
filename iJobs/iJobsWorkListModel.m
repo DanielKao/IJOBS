@@ -13,7 +13,7 @@
 @synthesize workListItems = _workListItems;
 
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
-  
+  TT_RELEASE_SAFELY(_workListItems);
   if (!self.isLoading) {
     TTURLRequest *request = [TTURLRequest requestWithURL:kWorkListAPI delegate:self];
     request.cachePolicy = cachePolicy;

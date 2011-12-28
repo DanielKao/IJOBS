@@ -49,8 +49,12 @@
   [super viewWillAppear:animated];
   BOOL isUserLogin = [[iJobsUserLoginManager sharedInstance] isUserLogin];
   if (isUserLogin) {
-    [self refresh];
+    [self.navigationItem.leftBarButtonItem setEnabled:YES];
+  }else {
+    [self.navigationItem.leftBarButtonItem setEnabled:NO];
+    self.dataSource = [[[TTListDataSource alloc] init] autorelease];
   }
+  [self reload];
 }
 
 - (void)viewDidUnload {
@@ -68,7 +72,7 @@
   BOOL isUserLogin = [[iJobsUserLoginManager sharedInstance] isUserLogin];
   [[iJobsUserLoginManager sharedInstance] setDelegate:self];
 
-  if (isUserLogin) {
+  if (isUserLogin) { 
     self.dataSource = [[[iJobsWorkListDataSource alloc] initWithWorkListAPI] autorelease];
     [self reload];
   }
@@ -78,7 +82,6 @@
 #pragma - private method
 
 - (void)cleanUpTableView {
-  TT_RELEASE_SAFELY(_dataSource);
   [(iJobsWorkListDataSource *)self.dataSource clearModel];
   [self refresh];
 }
@@ -96,10 +99,12 @@
 
 - (void)changeLoginButton:(NSNotification *)notification {
   if (notification.name == kLoginNotification) {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登出" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];    
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登出" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];  
+        [self.navigationItem.leftBarButtonItem setEnabled:YES];
   }
   else {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"登入" style:UIBarButtonItemStyleBordered target:self action:@selector(loginPrompt)] autorelease];    
+    [self.navigationItem.leftBarButtonItem setEnabled:NO];
   }
 }
 
