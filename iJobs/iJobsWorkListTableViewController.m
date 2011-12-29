@@ -137,8 +137,8 @@
       if ([loginPrompt.plainTextField.text isEqualToString:@""] || [loginPrompt.secretTextField.text isEqualToString:@""]) {
         [self loginWithUserEmail:@"1@1.com" userPassword:@"123456"];        
       }else {
-//        [self loginWithUserEmail:loginPrompt.plainTextField.text userPassword:loginPrompt.secretTextField.text];
-        [self loginWithUserEmail:@"2@2.com" userPassword:@"123456"];        
+        [self loginWithUserEmail:loginPrompt.plainTextField.text userPassword:loginPrompt.secretTextField.text];
+//        [self loginWithUserEmail:@"2@2.com" userPassword:@"123456"];        
       }
 //      [self loginWithUserEmail:@"apn@apn.com" userPassword:@"123456"];
     }

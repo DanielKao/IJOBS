@@ -74,7 +74,7 @@ static iJobsUserLoginManager *gSharedInstance;
   if (deviceToken != nil) {
     [request.parameters setObject:deviceToken forKey:@"device_token"]; 
   }
-  request.cachePolicy = TTURLRequestCachePolicyMemory;
+  request.cachePolicy = TTURLRequestCachePolicyNone;
   request.response = [[[TTURLJSONResponse alloc] init] autorelease];
   
   [request send];
