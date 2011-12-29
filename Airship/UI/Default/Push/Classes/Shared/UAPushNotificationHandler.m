@@ -34,7 +34,7 @@
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle: UA_PU_TR(@"UA_Notification_Title")
                                                     message: alertMessage
-                                                   delegate: nil
+                                                   delegate: self /*default is nil, Daniel Kao changed it*/
                                           cancelButtonTitle: @"OK"
                                           otherButtonTitles: nil];
 	[alert show];
@@ -108,6 +108,10 @@
 	
 	// Do something when launched from the background via a notification
 	
+}
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+  [[NSNotificationCenter defaultCenter] postNotificationName:kPushNotificationAlertViewWillDismiss object:nil];
 }
 
 @end

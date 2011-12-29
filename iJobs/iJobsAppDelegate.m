@@ -62,7 +62,6 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     UALOG(@"Received remote notification: %@", userInfo);
-    
     [[UAPush shared] handleNotification:userInfo applicationState:application.applicationState];
     [[UAPush shared] resetBadge]; // zero badge after push received
 }
@@ -114,6 +113,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+  [[NSNotificationCenter defaultCenter] postNotificationName:kAppBecomeActive object:nil];
   /*
    Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
    */
@@ -121,8 +121,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-  [[iJobsUserLoginManager sharedInstance] logout];
-  
+//  [[iJobsUserLoginManager sharedInstance] logout];  
   [[UAPush shared] resetBadge];
   [UAirship land];
 }

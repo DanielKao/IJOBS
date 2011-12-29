@@ -11,6 +11,9 @@
 #import "iJobsWorkListTableViewDelegate.h"
 #import "iJobsUserLoginManager.h"
 #import "DDAlertPrompt.h"
+#import "UAirship.h"
+#import "UAPush.h"
+
 
 @interface iJobsWorkListTableViewController()
 - (void)loginPrompt;
@@ -41,7 +44,9 @@
   [super viewDidLoad];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLoginButton:) name:kLoginNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLoginButton:) name:kLogoutNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAfterLogin:) name:kLoginNotification object:nil];    
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAfterLogin:) name:kLoginNotification object:nil]; 
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:kPushNotificationAlertViewWillDismiss object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:kAppBecomeActive object:nil];
   [self loginPrompt];
 }
 
@@ -56,6 +61,11 @@
   }
   [self reload];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+}
+
 
 - (void)viewDidUnload {
   [super viewDidUnload];
