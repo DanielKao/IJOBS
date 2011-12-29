@@ -46,6 +46,7 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeLoginButton:) name:kLogoutNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAfterLogin:) name:kLoginNotification object:nil]; 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:kPushNotificationAlertViewWillDismiss object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:kAppBecomeActive object:nil];
   [self loginPrompt];
 }
 
@@ -59,6 +60,10 @@
     self.dataSource = [[[TTListDataSource alloc] init] autorelease];
   }
   [self reload];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
 }
 
 
