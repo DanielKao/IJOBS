@@ -30,6 +30,3 @@
 
 @end
 
-@protocol iJobsUserLoginManagerDelegate
-- (void)userDidFinishLogin:(TTURLRequest *)request;
-@end

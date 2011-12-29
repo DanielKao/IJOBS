@@ -30,6 +30,8 @@
   TTURLJSONResponse *response = request.response;
   NSArray *itemsDictionary = response.rootObject;
   NSMutableArray *array = [NSMutableArray array];
+  TTDPRINT(@"workItemsDictionary: %@", itemsDictionary);
+  
   for(NSDictionary *item in itemsDictionary) {
     item = [item objectForKey:@"micropost"];
     
@@ -60,9 +62,9 @@
     [workingDate replaceOccurrencesOfString:@":00Z" withString:@"" options:2 range:NSMakeRange(0, [workingDate length])];
 
     [workItem setMissionDate:workingDate];
-    
     [workItem setMissionLocationAddress:[item objectForKey:@"missionLocationAddress"]];
     [workItem setMissionLocation:[item objectForKey:@"missionLocation"]];
+    
     if ([item objectForKey:@"mission_complete"] == 0) {
       [workItem setIsWorkDone:NO];
     } else {

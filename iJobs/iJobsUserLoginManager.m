@@ -8,10 +8,8 @@
 
 #import "iJobsUserLoginManager.h"
 #import "iJobsUserInfo.h"
-
+#import "iJobsWorkListTableViewController.h"
 @implementation iJobsUserLoginManager
-
-#define SESSION_EXPIRED_MINS 240
 
 @synthesize userInfo = _userInfo;
 @synthesize errorMessage = _errorMessage;
@@ -57,7 +55,7 @@ static iJobsUserLoginManager *gSharedInstance;
   //you should add use a sign-out API here.
   TTURLRequest *request = [TTURLRequest requestWithURL:kLogoutAPI delegate:self];
   request.httpMethod = @"GET";
-  request.cachePolicy = TTURLRequestCachePolicyNone;
+  request.cachePolicy = TTURLRequestCachePolicyNoCache;
   [request send];
   
   TT_RELEASE_SAFELY(_userInfo);
@@ -71,13 +69,12 @@ static iJobsUserLoginManager *gSharedInstance;
   
   NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
   NSString *deviceToken = [userDefault objectForKey:@"deviceToken"];
-  NSLog(@"deviceToken: %@", deviceToken);
   [request.parameters setObject:userEmail forKey:@"email"];
   [request.parameters setObject:userPassword forKey:@"password"];
   if (deviceToken != nil) {
     [request.parameters setObject:deviceToken forKey:@"device_token"]; 
   }
-  request.cachePolicy = TTURLRequestCachePolicyNone;
+  request.cachePolicy = TTURLRequestCachePolicyMemory;
   request.response = [[[TTURLJSONResponse alloc] init] autorelease];
   
   [request send];
@@ -108,9 +105,11 @@ static iJobsUserLoginManager *gSharedInstance;
 
 - (void)requestDidFinishLoad:(TTURLRequest*)request {
   
-  if (request.urlPath == kLoginAPI) {
+  if ([request.urlPath isEqualToString:kLoginAPI]) {
     TTURLJSONResponse *response = request.response;
     NSDictionary *itemsDictionary = response.rootObject;
+    TTDPRINT(@"response: %@", response);
+    TTDPRINT(@"itemsDictionary: %@", itemsDictionary);
     
     if ([itemsDictionary objectForKey:@"error_message"]) {
       TTDPRINT(@"error_message: %@", [itemsDictionary objectForKey:@"error_message"]);
@@ -124,7 +123,6 @@ static iJobsUserLoginManager *gSharedInstance;
     
     _userInfo = [[iJobsUserInfo alloc] initWithUserName:[userInfoDicionary objectForKey:@"name"] userEmail:[userInfoDicionary objectForKey:@"email"] userId:[userInfoDicionary objectForKey:@"id"] admin:[[userInfoDicionary objectForKey:@"admin"] boolValue]];
     
-//    [_delegate userDidFinishLogin:request];
     [[NSNotificationCenter defaultCenter] postNotificationName:kLoginNotification object:nil];
     }
   }else {
@@ -136,7 +134,7 @@ static iJobsUserLoginManager *gSharedInstance;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
   if (buttonIndex == 0) {
-    [_delegate loginPrompt];
+    [(iJobsWorkListTableViewController *)_delegate loginPrompt];
   }
 }
 
